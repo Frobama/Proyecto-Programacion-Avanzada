@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://dduge7sixpbcg"]
+
+[ext_resource type="PackedScene" uid="uid://dcqluj7mfg01d" path="res://svgame.tscn" id="1_b84ys"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="Game" parent="." instance=ExtResource("1_b84ys")]
+position = Vector2(28, 0)
+
+[node name="Mob" parent="Game" index="2"]
+position = Vector2(584, 876)
+
+[node name="Mob2" parent="Game" index="3"]
+position = Vector2(1051, 1029)
+
+[node name="Mob3" parent="Game" index="4"]
+position = Vector2(1479, 946)
+
+[node name="PineTree" parent="Game" index="5"]
+position = Vector2(1037, 392)
+
+[node name="PineTree2" parent="Game" index="6"]
+position = Vector2(1542, 653)
+
+[node name="PineTree3" parent="Game" index="7"]
+position = Vector2(1389, 505)
+
+[node name="PineTree4" parent="Game" index="8"]
+position = Vector2(699, 550)
+
+[node name="PineTree5" parent="Game" index="9"]
+position = Vector2(867, 438)
+
+[node name="PineTree6" parent="Game" index="10"]
+position = Vector2(539, 670)
+
+[node name="PineTree7" parent="Game" index="11"]
+position = Vector2(1228, 444)
+
+[editable path="Game"]

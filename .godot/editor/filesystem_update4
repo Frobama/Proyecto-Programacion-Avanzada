@@ -1,3 +1,7 @@
+res://menu.gd
+res://mob.gd
+res://mob.tscn
+res://player.gd
 res://player.tscn
-res://svgame.tscn
-res://menu.tscn
+res://svgame.gd
+res://characters/happy_boo/happy_boo.tscn

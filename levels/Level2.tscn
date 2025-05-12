@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg5qaay25edp1"]
+
+[ext_resource type="PackedScene" uid="uid://dcqluj7mfg01d" path="res://svgame.tscn" id="1_gljt1"]
+[ext_resource type="PackedScene" uid="uid://cm2huotep3byu" path="res://pine_tree.tscn" id="2_f5x84"]
+
+[node name="Level2" type="Node2D"]
+
+[node name="Game" parent="." instance=ExtResource("1_gljt1")]
+
+[node name="Player" parent="Game" index="1"]
+position = Vector2(999, 84)
+
+[node name="Mob" parent="Game" index="2"]
+position = Vector2(497, 315)
+
+[node name="Mob2" parent="Game" index="3"]
+position = Vector2(1423, 259)
+
+[node name="Mob3" parent="Game" index="4"]
+position = Vector2(475, -101)
+
+[node name="PineTree" parent="Game" index="5"]
+position = Vector2(1130, 167)
+
+[node name="PineTree2" parent="Game" index="6"]
+position = Vector2(1255, 1)
+
+[node name="PineTree3" parent="Game" index="7"]
+position = Vector2(957, 262)
+
+[node name="PineTree4" parent="Game" index="8"]
+position = Vector2(995, 442)
+
+[node name="PineTree5" parent="Game" index="9"]
+position = Vector2(1151, 433)
+
+[node name="PineTree6" parent="Game" index="10"]
+position = Vector2(794, 447)
+
+[node name="PineTree7" parent="Game" index="11"]
+position = Vector2(1109, -129)
+
+[node name="PineTree8" parent="Game" instance=ExtResource("2_f5x84")]
+position = Vector2(935, -121)
+
+[node name="PineTree9" parent="Game" instance=ExtResource("2_f5x84")]
+position = Vector2(782, -7)
+
+[node name="PineTree10" parent="Game" instance=ExtResource("2_f5x84")]
+position = Vector2(1306, 431)
+
+[editable path="Game"]
