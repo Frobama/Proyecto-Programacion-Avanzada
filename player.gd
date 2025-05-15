@@ -21,9 +21,10 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("shoot") and current_state == PlayerState.NORMAL:
 		get_node("Gun").shoot()
 	if velocity.length() > 0.0:
-		get_node("HappyBoo").play_walk_animation()
-	else:
-		get_node("HappyBoo").play_idle_animation()
+		%Ucenin.play("ucenin_walk")
+		
+	#else:
+		#get_node("Ucenin").play_idle_animation()
 		
 	const DAMAGE_RATE = 5.0
 	var overlapping_mobs = %HurtBox.get_overlapping_bodies()

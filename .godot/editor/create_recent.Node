@@ -1,4 +1,5 @@
 AnimatedSprite2D
+AnimationPlayer
 CharacterBody2D
 Node
 Label
@@ -11,4 +12,3 @@ Timer
 Control
 TileMapLayer
 ParallaxLayer
-ParallaxBackground
