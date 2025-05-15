@@ -16,17 +16,24 @@ var rotation_speed = 1.0 # Velocidad de rotación angular (radianes/segundo)
 var orbit_radius = 100.0 # Distancia del mob al jugador
 var orbit_angle = 0.0 # Ángulo actual del mob alrededor del jugador
 
+var esta_muriendo = false
 
 func _ready():
 	%Slime.play_walk()
+	%Slime/Anchor/SlimeBody.animation_finished.connect(_on_slime_animation_finished)
 	
 func _physics_process(delta):
 	if player == null:
 		return
 		
-	if not bullet_hell_mode:
+	if not bullet_hell_mode and not esta_muriendo:
 		var direction = global_position.direction_to(player.global_position)
 		velocity = direction * 300.0
+		move_and_slide()
+		
+	elif not bullet_hell_mode and esta_muriendo:
+		var direction = global_position.direction_to(player.global_position)
+		velocity = direction * 100.0
 		move_and_slide()
 		
 	else:
@@ -56,12 +63,19 @@ func _physics_process(delta):
 		if shoot_timer >= shoot_interval:
 			shoot_timer = 0.0
 			shoot_radial_pattern()
-		
 
 func take_damage():
+	if esta_muriendo:
+		return
+			
 	health -= 1
 	%Slime.play_hurt()
 	if health == 0:
+		esta_muriendo = true
+		%Slime.play_dead()
+		
+func _on_slime_animation_finished():
+	if esta_muriendo:
 		queue_free()
 		death.emit()
 		

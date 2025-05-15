@@ -3,8 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://ogik4s70pgwl" path="res://characters/enemigo/slime.tscn" id="1_dy6sc"]
 [ext_resource type="Script" uid="uid://cuap1pp0p6x53" path="res://mob.gd" id="1_nokgg"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nokgg"]
-radius = 52.0096
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nokgg"]
+radius = 44.0
+height = 108.0
 
 [node name="Mob" type="CharacterBody2D"]
 collision_layer = 3
@@ -16,5 +17,5 @@ unique_name_in_owner = true
 position = Vector2(-218, 83)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -5)
-shape = SubResource("CircleShape2D_nokgg")
+position = Vector2(-1, -6)
+shape = SubResource("CapsuleShape2D_nokgg")

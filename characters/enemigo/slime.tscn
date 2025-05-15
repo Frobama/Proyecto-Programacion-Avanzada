@@ -1,7 +1,131 @@
-[gd_scene load_steps=10 format=3 uid="uid://ogik4s70pgwl"]
+[gd_scene load_steps=27 format=3 uid="uid://ogik4s70pgwl"]
 
 [ext_resource type="Script" uid="uid://buny3c7f7ur2f" path="res://characters/enemigo/slime.gd" id="1_87y5x"]
+[ext_resource type="Texture2D" uid="uid://dm7m5pupcmbxj" path="res://characters/enemigo/movEnemigoFrente.png" id="2_ufm6c"]
 [ext_resource type="Texture2D" uid="uid://dr40gp4l5qspf" path="res://characters/enemigo/enemigoHurt.png" id="3_ka7fv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufm6c"]
+atlas = ExtResource("3_ka7fv")
+region = Rect2(0, 0, 37, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yows"]
+atlas = ExtResource("3_ka7fv")
+region = Rect2(37, 0, 37, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cowh6"]
+atlas = ExtResource("3_ka7fv")
+region = Rect2(74, 0, 37, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mex76"]
+atlas = ExtResource("3_ka7fv")
+region = Rect2(111, 0, 37, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcsx0"]
+atlas = ExtResource("3_ka7fv")
+region = Rect2(148, 0, 37, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7ura"]
+atlas = ExtResource("3_ka7fv")
+region = Rect2(185, 0, 37, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpj32"]
+atlas = ExtResource("2_ufm6c")
+region = Rect2(0, 0, 37, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ka7fv"]
+atlas = ExtResource("2_ufm6c")
+region = Rect2(37, 0, 37, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_to6oa"]
+atlas = ExtResource("2_ufm6c")
+region = Rect2(74, 0, 37, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4aq3m"]
+atlas = ExtResource("2_ufm6c")
+region = Rect2(111, 0, 37, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5hwr"]
+atlas = ExtResource("2_ufm6c")
+region = Rect2(148, 0, 37, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofeib"]
+atlas = ExtResource("2_ufm6c")
+region = Rect2(185, 0, 37, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83hyo"]
+atlas = ExtResource("2_ufm6c")
+region = Rect2(222, 0, 37, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjts2"]
+atlas = ExtResource("2_ufm6c")
+region = Rect2(259, 0, 37, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gmlc"]
+atlas = ExtResource("2_ufm6c")
+region = Rect2(296, 0, 37, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7yows"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufm6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yows")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cowh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mex76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcsx0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7ura")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpj32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ka7fv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to6oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4aq3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5hwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofeib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83hyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjts2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gmlc")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_y4lve"]
 length = 0.12
@@ -12,18 +136,6 @@ tracks/0/path = NodePath("Anchor/SlimeBody:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Anchor/SlimeBody/EnemigoHurt:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -50,18 +162,6 @@ tracks/0/keys = {
 resource_name = "hurt_enemigo"
 length = 2.0
 step = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Anchor/SlimeBody/EnemigoHurt:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.300655, 0.6, 0.9, 1.2, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4]
-}
 
 [sub_resource type="Animation" id="Animation_71vdi"]
 resource_name = "idle"
@@ -129,19 +229,14 @@ script = ExtResource("1_87y5x")
 
 [node name="Anchor" type="Marker2D" parent="."]
 
-[node name="SlimeBody" type="Sprite2D" parent="Anchor"]
+[node name="SlimeBody" type="AnimatedSprite2D" parent="Anchor"]
+unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(223, -29)
-scale = Vector2(2.081, 2)
-texture = ExtResource("3_ka7fv")
+scale = Vector2(2.5, 2.403)
+sprite_frames = SubResource("SpriteFrames_7yows")
+animation = &"dead"
 offset = Vector2(0, -36)
-hframes = 10
-
-[node name="EnemigoHurt" type="Sprite2D" parent="Anchor/SlimeBody"]
-position = Vector2(-5.93926e-07, -36)
-scale = Vector2(1, 1.041)
-texture = ExtResource("3_ka7fv")
-hframes = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
