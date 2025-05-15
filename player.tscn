@@ -129,6 +129,7 @@ position = Vector2(1, -34)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_onrkg")
+debug_color = Color(0.898039, 0.294118, 0.290196, 0.94902)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

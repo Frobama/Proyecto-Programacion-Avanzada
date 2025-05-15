@@ -12,4 +12,5 @@ func shoot():
 	new_bullet.direction = Vector2.RIGHT.rotated(angle)
 	new_bullet.is_enemy_bullet = false
 	new_bullet.shooter = self
+	new_bullet.get_node("Projectile").modulate = Color("e54b4af2")
 	get_tree().current_scene.add_child(new_bullet)

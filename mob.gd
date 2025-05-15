@@ -79,5 +79,4 @@ func shoot_radial_pattern():
 		bullet.speed = 300  # Velocidad aleatoria para variedad
 		bullet.is_enemy_bullet = true
 		bullet.shooter = self
-		bullet.get_node("Projectile").modulate = Color("#28BDA6")
 		get_tree().current_scene.add_child(bullet)

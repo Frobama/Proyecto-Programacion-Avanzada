@@ -1,10 +1,1 @@
-res://player.tscn
-res://mob.tscn
 res://menu.tscn
-res://svgame.tscn
-res://GameOver.tscn
-res://VictoryScreen.tscn
-res://characters/enemigo/slime.tscn
-res://characters/happy_boo/happy_boo.tscn
-res://characters/happy_boo/happy_boo.gd
-res://player.gd

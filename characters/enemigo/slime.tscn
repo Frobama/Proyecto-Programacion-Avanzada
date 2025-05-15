@@ -131,14 +131,14 @@ script = ExtResource("1_87y5x")
 
 [node name="SlimeBody" type="Sprite2D" parent="Anchor"]
 texture_filter = 1
-position = Vector2(11, 49)
+position = Vector2(223, -29)
 scale = Vector2(2.081, 2)
 texture = ExtResource("3_ka7fv")
 offset = Vector2(0, -36)
 hframes = 10
 
 [node name="EnemigoHurt" type="Sprite2D" parent="Anchor/SlimeBody"]
-position = Vector2(-7.15256e-06, -38)
+position = Vector2(-5.93926e-07, -36)
 scale = Vector2(1, 1.041)
 texture = ExtResource("3_ka7fv")
 hframes = 10

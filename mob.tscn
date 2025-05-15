@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cuap1pp0p6x53" path="res://mob.gd" id="1_nokgg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nokgg"]
-radius = 51.0098
+radius = 52.0096
 
 [node name="Mob" type="CharacterBody2D"]
 collision_layer = 3
@@ -13,7 +13,8 @@ script = ExtResource("1_nokgg")
 
 [node name="Slime" parent="." instance=ExtResource("1_dy6sc")]
 unique_name_in_owner = true
+position = Vector2(-218, 83)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -30)
+position = Vector2(-2, -5)
 shape = SubResource("CircleShape2D_nokgg")
