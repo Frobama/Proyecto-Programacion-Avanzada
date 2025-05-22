@@ -5,3 +5,6 @@ res://GameOver.tscn
 res://player.tscn
 res://svgame.tscn
 res://gun.tscn
+res://levels.gd
+res://menu.gd
+res://levels.tscn

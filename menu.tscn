@@ -45,14 +45,6 @@ grow_vertical = 2
 texture = ExtResource("1_lti8b")
 expand_mode = 1
 
-[node name="TextEdit" type="TextEdit" parent="TextureRect"]
-layout_mode = 0
-offset_left = 287.861
-offset_top = 189.641
-offset_right = 295.861
-offset_bottom = 197.641
-text = "Contaminacion Mortal"
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -68,6 +60,7 @@ theme_override_constants/separation = 28
 
 [node name="PLAY" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 14
 theme_override_fonts/font = ExtResource("2_ytr4m")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = SubResource("StyleBoxFlat_ouk20")
@@ -77,6 +70,7 @@ script = ExtResource("2_ouk20")
 
 [node name="MULTI" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("2_ytr4m")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = SubResource("StyleBoxFlat_lti8b")
@@ -84,6 +78,7 @@ text = "MULTIJUGADOR"
 
 [node name="OP" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("2_ytr4m")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = SubResource("StyleBoxFlat_mae5d")
@@ -93,6 +88,7 @@ text = "OPCIONES"
 layout_mode = 2
 size_flags_vertical = 15
 mouse_filter = 1
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("2_ytr4m")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = SubResource("StyleBoxFlat_4hy44")
@@ -100,6 +96,19 @@ text = "ESCAPE"
 
 [node name="BocinaPrincipal" parent="." instance=ExtResource("3_mae5d")]
 stream = ExtResource("4_4hy44")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 119.0
+offset_right = 1558.0
+offset_bottom = 260.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_ytr4m")
+theme_override_font_sizes/font_size = 150
+text = "Contaminacion Mortal"
 
 [connection signal="pressed" from="VBoxContainer/PLAY" to="VBoxContainer/PLAY" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/PLAY" to="VBoxContainer/EXIT" method="_on_play_pressed"]
