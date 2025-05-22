@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cjj7cfw4lp3ck"
-path="res://.godot/imported/28 Days Later.ttf-f0cc86f514f803388284815c4573ec43.fontdata"
+path="res://.godot/imported/28 Days Later.ttf-e3bc7f0b379cf9ea9a1b1aa196a16add.fontdata"
 
 [deps]
 
-source_file="res://28 Days Later.ttf"
-dest_files=["res://.godot/imported/28 Days Later.ttf-f0cc86f514f803388284815c4573ec43.fontdata"]
+source_file="res://Fuentes/28 Days Later.ttf"
+dest_files=["res://.godot/imported/28 Days Later.ttf-e3bc7f0b379cf9ea9a1b1aa196a16add.fontdata"]
 
 [params]
 
