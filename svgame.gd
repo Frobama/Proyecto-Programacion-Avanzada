@@ -2,7 +2,9 @@ extends Node2D
 
 var is_bullet_hell = false
 var num_mob = 0
-var remaining_time = 60 #duracion del nivel en segundos
+@export var remaining_time: int = 60 # tiempo variable entre niveles, cambiar desde el inspector
+
+@export var mob_limit: int = 10  # numero max de mobs editable en cada nivel, cambiar desde el inspector
 
 @onready var countdown_timer = $CountdownTimer
 @onready var time_label = $CanvasLayer/TimeLabel
@@ -40,7 +42,7 @@ func _on_exit_bullet_hell():
 			child.bullet_hell_mode = false
 	
 func spawn_mob():
-	if(num_mob < 10):
+	if(num_mob < mob_limit): #numero mobs
 		var new_mob = preload("res://mob.tscn").instantiate()
 		new_mob.connect("death", Callable(self, "mob_death"))
 		%PathFollow2D.progress_ratio = randf()
