@@ -6,6 +6,7 @@ var remaining_time = 60 #duracion del nivel en segundos
 
 @onready var countdown_timer = $CountdownTimer
 @onready var time_label = $CanvasLayer/TimeLabel
+@onready var money_label = $CanvasLayer/HBoxContainer/MoneyLabel
 
 func _ready() -> void:
 	var player = get_node("Player")
@@ -17,6 +18,7 @@ func _ready() -> void:
 		if child is Mob:
 			child.player = player
 	
+	$CanvasLayer/HBoxContainer/AnimatedSprite2D.play("moneda")
 	$CountdownTimer.start()
 	update_timer_label()
 	
@@ -56,6 +58,7 @@ func spawn_mob():
 
 func mob_death():
 	num_mob -= 1
+	
 		
 func _on_timer_timeout():
 	if not is_bullet_hell:
@@ -107,3 +110,12 @@ func _on_CountdownTimer_timeout():
 	if remaining_time <= 0:
 		$CountdownTimer.stop()
 		show_victory_screen()
+
+
+
+func _on_player_money_change(cantidad) -> void:
+	money_label.text = "Dinero: $" + str(cantidad)
+	var player = get_node("Player")
+	if player.money > 5:
+		var arma = get_node("Player/Gun")
+		arma.type = 2

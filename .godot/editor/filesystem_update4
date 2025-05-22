@@ -1,5 +1,8 @@
 res://menu.tscn
 res://characters/enemigo/slime.tscn
-res://characters/enemigo/slime.gd
-res://mob.gd
 res://mob.tscn
+res://GameOver.tscn
+res://player.tscn
+res://svgame.tscn
+res://gun.tscn
+res://gun.gd

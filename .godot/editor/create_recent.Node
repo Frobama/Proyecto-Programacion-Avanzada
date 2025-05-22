@@ -1,4 +1,6 @@
 AnimatedSprite2D
+HBoxContainer
+Timer
 AnimationPlayer
 CharacterBody2D
 Node
@@ -8,7 +10,5 @@ VBoxContainer
 ColorRect
 CanvasLayer
 Panel
-Timer
 Control
 TileMapLayer
-ParallaxLayer

@@ -1,8 +1,8 @@
 class_name Mob
 extends CharacterBody2D
 
-var health = 3
 signal death
+var health = 3
 
 const enemy_bullet_scene = preload("res://bullet.tscn")
 var shoot_timer := 0.0
@@ -76,8 +76,9 @@ func take_damage():
 		
 func _on_slime_animation_finished():
 	if esta_muriendo:
-		queue_free()
 		death.emit()
+		$"../Player".add_money(1)
+		queue_free()
 		
 func shoot_radial_pattern():
 	var num_bullets = 4

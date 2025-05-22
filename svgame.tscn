@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dcqluj7mfg01d"]
+[gd_scene load_steps=24 format=4 uid="uid://dcqluj7mfg01d"]
 
 [ext_resource type="Script" uid="uid://brmpap0dham6i" path="res://svgame.gd" id="1_bjmfr"]
 [ext_resource type="PackedScene" uid="uid://bdu6y60w2q3lk" path="res://player.tscn" id="1_kgt6l"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://du7kwfi15lkuw" path="res://tiles/fantasy_ [version 2.0]/fantasy_ [version 2.0]/taiga_/taiga_.png" id="6_6r4s4"]
 [ext_resource type="Texture2D" uid="uid://f83wgfq4xw1e" path="res://tiles/fantasy_ [version 2.0]/fantasy_ [version 2.0]/taiga_/taiga_ [resources].png" id="7_6r4s4"]
 [ext_resource type="FontFile" uid="uid://cjj7cfw4lp3ck" path="res://28 Days Later.ttf" id="8_7trrv"]
+[ext_resource type="Texture2D" uid="uid://ct533hcxe7ehw" path="res://tiles/Dungeon Gathering Free Version/Coin Sheet.png" id="9_28nt8"]
 
 [sub_resource type="Curve2D" id="Curve2D_uce60"]
 _data = {
@@ -199,6 +200,75 @@ texture = ExtResource("7_6r4s4")
 [sub_resource type="TileSet" id="TileSet_nrou7"]
 sources/0 = SubResource("TileSetAtlasSource_28nt8")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrou7"]
+atlas = ExtResource("9_28nt8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylgqp"]
+atlas = ExtResource("9_28nt8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eiu6d"]
+atlas = ExtResource("9_28nt8")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwx1b"]
+atlas = ExtResource("9_28nt8")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqklg"]
+atlas = ExtResource("9_28nt8")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilxlh"]
+atlas = ExtResource("9_28nt8")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oipg1"]
+atlas = ExtResource("9_28nt8")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uhoy"]
+atlas = ExtResource("9_28nt8")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sxsma"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrou7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylgqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eiu6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwx1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqklg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilxlh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oipg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uhoy")
+}],
+"loop": true,
+"name": &"moneda",
+"speed": 5.0
+}]
+
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_bjmfr")
@@ -275,7 +345,33 @@ offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("8_7trrv")
 theme_override_font_sizes/font_size = 50
 
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -205.0
+offset_bottom = 67.0
+grow_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/HBoxContainer"]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_sxsma")
+animation = &"moneda"
+frame_progress = 0.202233
+offset = Vector2(-10, 10)
+
+[node name="MoneyLabel" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_7trrv")
+theme_override_font_sizes/font_size = 50
+text = "Dinero: $0"
+horizontal_alignment = 2
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
 [connection signal="health_depleted" from="Player" to="pause" method="_on_player_health_depleted"]
+[connection signal="money_change" from="Player" to="." method="_on_player_money_change"]
 [connection signal="timeout" from="TimerVida" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="TimerVida" to="Player" method="_on_timer_timeout"]
 [connection signal="timeout" from="CountdownTimer" to="." method="_on_CountdownTimer_timeout"]

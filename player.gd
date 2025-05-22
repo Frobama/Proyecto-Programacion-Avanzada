@@ -4,6 +4,7 @@ extends CharacterBody2D
 signal health_depleted
 signal request_bullet_hell
 signal request_bullet_hell_end
+signal money_change
 
 var health = 100.0
 
@@ -12,6 +13,7 @@ var current_state = PlayerState.NORMAL
 
 var bullet_hell_trigger = 90
 
+var money = 0
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left","move_right","move_up","move_down")
@@ -42,7 +44,7 @@ func _on_timer_timeout():
 		
 func updateBar():
 	%ProgressBar.value = health
-	
+	money_change.emit()
 func _process(delta):
 	if health <= bullet_hell_trigger and current_state != PlayerState.BULLET_HELL:
 		request_bullet_hell.emit()
@@ -55,3 +57,7 @@ func _process(delta):
 func look_at_mouse():
 	var mouse_pos = get_global_mouse_position()
 	get_node("Gun/WeaponPivot").look_at(mouse_pos)
+
+func add_money(cantidad):
+	money += cantidad
+	emit_signal("money_change", money)
