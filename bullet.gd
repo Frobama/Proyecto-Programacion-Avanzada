@@ -24,7 +24,6 @@ func _on_body_entered(body):
 		body.updateBar()
 	elif not is_enemy_bullet and body.name != "Player":
 		if body.has_method("take_damage"):
-			body.take_damage()
 			body.take_damage(1)
 	
 	queue_free()

@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://b6mkl5ps3jjf2" path="res://skill_bar.gd" id="5_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://cksiu5gst6fmp" path="res://characters/happy_boo/square_body.png" id="5_sweqy"]
 [ext_resource type="PackedScene" uid="uid://crd7jun2l85l3" path="res://skill_button.tscn" id="6_dw050"]
-[ext_resource type="FontFile" uid="uid://cjj7cfw4lp3ck" path="res://28 Days Later.ttf" id="8_dw050"]
+[ext_resource type="FontFile" uid="uid://cjj7cfw4lp3ck" path="res://Fuentes/28 Days Later.ttf" id="8_dw050"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 29.21

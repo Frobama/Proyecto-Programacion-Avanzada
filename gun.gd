@@ -1,7 +1,6 @@
 extends Area2D
 
 var type = 1#Pistola normal
-var type = 3#Pistola normal
 #tipo 2: Escopeta (?)
 #tipo 3: rifle (dispara mas rapido)
 var puede_disparar = true
