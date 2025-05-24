@@ -5,7 +5,7 @@ func _ready():
 	BocinaPrincipal.stream = sonidoFondo
 	BocinaPrincipal.play()
 func _on_pressed() -> void:
-	get_tree().change_scene_to_file("res://svgame.tscn")
+	get_tree().change_scene_to_file("res://levels.tscn")
 
 
 func _on_op_pressed() -> void:

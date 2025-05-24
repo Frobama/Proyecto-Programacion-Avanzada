@@ -11,3 +11,6 @@ res://bullet.tscn
 res://bullet.gd
 res://mob.gd
 res://skills/explosion_quimica_hit.gd
+res://levels.gd
+res://menu.gd
+res://levels.tscn

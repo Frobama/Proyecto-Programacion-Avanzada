@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://cf1k5n0xyk7cx"]
 
 [ext_resource type="Script" uid="uid://c0eojl1iy0ctn" path="res://victory_screen.gd" id="1_44yii"]
-[ext_resource type="FontFile" uid="uid://cjj7cfw4lp3ck" path="res://28 Days Later.ttf" id="1_yvem7"]
+[ext_resource type="FontFile" uid="uid://cjj7cfw4lp3ck" path="res://Fuentes/28 Days Later.ttf" id="1_yvem7"]
+
 
 [node name="Control" type="Control"]
 layout_mode = 3

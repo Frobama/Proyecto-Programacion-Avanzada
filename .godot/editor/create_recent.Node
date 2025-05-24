@@ -1,6 +1,4 @@
-CollisionShape2D
-Area2D
-Timer
+Node2D
 AnimatedSprite2D
 HBoxContainer
 CanvasLayer

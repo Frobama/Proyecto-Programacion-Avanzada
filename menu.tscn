@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bcknecosj581f" path="res://addons/c3e0093c-7a14-4904-83af-b9c722dfa83d.png" id="1_lti8b"]
 [ext_resource type="Script" uid="uid://bu15aw6jsk4n4" path="res://menu.gd" id="2_ouk20"]
-[ext_resource type="FontFile" uid="uid://cjj7cfw4lp3ck" path="res://28 Days Later.ttf" id="2_ytr4m"]
+[ext_resource type="FontFile" uid="uid://cjj7cfw4lp3ck" path="res://Fuentes/28 Days Later.ttf" id="2_ytr4m"]
 [ext_resource type="PackedScene" uid="uid://dp3f6pcqev54l" path="res://songs/bocina_principal.tscn" id="3_mae5d"]
 [ext_resource type="AudioStream" uid="uid://cb4kdt01je4jk" path="res://songs/ObservingTheStar.ogg" id="4_4hy44"]
 
@@ -60,6 +60,7 @@ theme_override_constants/separation = 28
 
 [node name="PLAY" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 14
 theme_override_fonts/font = ExtResource("2_ytr4m")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = SubResource("StyleBoxFlat_ouk20")
@@ -69,6 +70,7 @@ script = ExtResource("2_ouk20")
 
 [node name="MULTI" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("2_ytr4m")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = SubResource("StyleBoxFlat_lti8b")
@@ -76,6 +78,7 @@ text = "MULTIJUGADOR"
 
 [node name="OP" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("2_ytr4m")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = SubResource("StyleBoxFlat_mae5d")
@@ -85,6 +88,7 @@ text = "OPCIONES"
 layout_mode = 2
 size_flags_vertical = 15
 mouse_filter = 1
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("2_ytr4m")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = SubResource("StyleBoxFlat_4hy44")
@@ -92,6 +96,19 @@ text = "ESCAPE"
 
 [node name="BocinaPrincipal" parent="." instance=ExtResource("3_mae5d")]
 stream = ExtResource("4_4hy44")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 119.0
+offset_right = 1558.0
+offset_bottom = 260.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_ytr4m")
+theme_override_font_sizes/font_size = 150
+text = "Contaminacion Mortal"
 
 [connection signal="pressed" from="VBoxContainer/PLAY" to="VBoxContainer/PLAY" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/PLAY" to="VBoxContainer/EXIT" method="_on_play_pressed"]
