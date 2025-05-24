@@ -95,6 +95,7 @@ stream = ExtResource("4_4hy44")
 
 [connection signal="pressed" from="VBoxContainer/PLAY" to="VBoxContainer/PLAY" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/PLAY" to="VBoxContainer/EXIT" method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/MULTI" to="VBoxContainer/PLAY" method="_on_multi_pressed"]
 [connection signal="pressed" from="VBoxContainer/OP" to="VBoxContainer/PLAY" method="_on_op_pressed"]
 [connection signal="pressed" from="VBoxContainer/OP" to="VBoxContainer/EXIT" method="_on_op_pressed"]
 [connection signal="pressed" from="VBoxContainer/EXIT" to="VBoxContainer/PLAY" method="_on_exit_pressed"]

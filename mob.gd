@@ -65,10 +65,12 @@ func _physics_process(delta):
 			shoot_radial_pattern()
 
 func take_damage():
+func take_damage(damage):
 	if esta_muriendo:
 		return
 			
 	health -= 1
+	health -= damage
 	%Slime.play_hurt()
 	if health == 0:
 		esta_muriendo = true

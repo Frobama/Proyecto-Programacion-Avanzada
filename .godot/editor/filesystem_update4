@@ -1,8 +1,13 @@
 res://menu.tscn
-res://characters/enemigo/slime.tscn
 res://mob.tscn
 res://GameOver.tscn
 res://player.tscn
 res://svgame.tscn
 res://gun.tscn
-res://gun.gd
+res://skill_button.tscn
+res://chat-window.tscn
+res://skills/ExplosionQuimica.tscn
+res://bullet.tscn
+res://bullet.gd
+res://mob.gd
+res://skills/explosion_quimica_hit.gd

@@ -1,0 +1,91 @@
+[gd_scene load_steps=14 format=3 uid="uid://b25j1if1jj1dk"]
+
+[ext_resource type="Texture2D" uid="uid://dcw27qgik2al2" path="res://skill_sprites/Explosion_1/Explosion_3.png" id="1_575ln"]
+[ext_resource type="Script" uid="uid://yjamodximawc" path="res://skills/explosion_quimica_hit.gd" id="1_ur8ro"]
+[ext_resource type="Texture2D" uid="uid://dwltgc4dtse2y" path="res://skill_sprites/Explosion_1/Explosion_4.png" id="2_ur8ro"]
+[ext_resource type="Texture2D" uid="uid://cuikfwxts50b0" path="res://skill_sprites/Explosion_1/Explosion_5.png" id="3_5e730"]
+[ext_resource type="Texture2D" uid="uid://dphyuyhicyvsi" path="res://skill_sprites/Explosion_1/Explosion_6.png" id="4_dk8q4"]
+[ext_resource type="Texture2D" uid="uid://cdi241gm53cei" path="res://skill_sprites/Explosion_1/Explosion_7.png" id="5_fjcib"]
+[ext_resource type="Texture2D" uid="uid://csy8123wnlnep" path="res://skill_sprites/Explosion_1/Explosion_8.png" id="6_6s3cu"]
+[ext_resource type="Texture2D" uid="uid://cvs2pg1n3g1hg" path="res://skill_sprites/Explosion_1/Explosion_9.png" id="7_ymdp1"]
+[ext_resource type="Texture2D" uid="uid://brcuevi2u62kr" path="res://skill_sprites/Explosion_1/Explosion_10.png" id="8_m6st1"]
+[ext_resource type="Texture2D" uid="uid://b1x0ugbnxlq0s" path="res://skill_sprites/Explosion_1/Explosion_1.png" id="9_uoh5c"]
+[ext_resource type="Texture2D" uid="uid://jadr6o8snxv7" path="res://skill_sprites/Explosion_1/Explosion_2.png" id="10_8tyep"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_58ckn"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_575ln")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ur8ro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5e730")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dk8q4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fjcib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6s3cu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ymdp1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_m6st1")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_uoh5c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_8tyep")
+}],
+"loop": true,
+"name": &"travel",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ur8ro"]
+radius = 28.0179
+
+[node name="ExplosionQuimica" type="Area2D"]
+collision_mask = 3
+script = ExtResource("1_ur8ro")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.32549, 0.862745, 0.168627, 1)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_58ckn")
+animation = &"hit"
+frame = 7
+frame_progress = 1.0
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_ur8ro")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqtemb164ydt6"]
+
+[ext_resource type="Script" path="res://scripts/chat-manager.gd" id="1_8ubkx"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_8ubkx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 671.0
+offset_bottom = 501.0
+
+[node name="ChatDisplay" type="TextEdit" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="UserList" type="ItemList" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="InputMessage" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="SendButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2

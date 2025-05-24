@@ -1,9 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://bdu6y60w2q3lk"]
+[gd_scene load_steps=23 format=3 uid="uid://bdu6y60w2q3lk"]
 
 [ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://7c2h0hbw3u3c" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://dekiv3yausike" path="res://gun.tscn" id="2_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://cy72u0mfcqvna" path="res://characters/happy_boo/ucenin.png" id="4_hqtel"]
+[ext_resource type="Script" uid="uid://b6mkl5ps3jjf2" path="res://skill_bar.gd" id="5_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://cksiu5gst6fmp" path="res://characters/happy_boo/square_body.png" id="5_sweqy"]
+[ext_resource type="PackedScene" uid="uid://crd7jun2l85l3" path="res://skill_button.tscn" id="6_dw050"]
+[ext_resource type="FontFile" uid="uid://cjj7cfw4lp3ck" path="res://28 Days Later.ttf" id="8_dw050"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 29.21
@@ -168,8 +172,64 @@ libraries = {
 &"": SubResource("AnimationLibrary_2hs0m")
 }
 
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="SkillBar" type="HBoxContainer" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -80.0
+offset_right = 128.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("5_1jxqw")
+
+[node name="SkillButton" parent="UI/SkillBar" instance=ExtResource("6_dw050")]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SkillButton2" parent="UI/SkillBar" instance=ExtResource("6_dw050")]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SkillButton3" parent="UI/SkillBar" instance=ExtResource("6_dw050")]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="TimerDisparo" type="Timer" parent="."]
 wait_time = 0.7
 one_shot = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 498.0
+offset_top = 429.0
+offset_right = 736.0
+offset_bottom = 453.0
+theme_override_fonts/font = ExtResource("8_dw050")
+theme_override_font_sizes/font_size = 25
+text = "Nivel de contaminacion"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 769.0
+offset_top = 372.0
+offset_right = 853.0
+offset_bottom = 445.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2, 2)
+fill_mode = 4
+texture_progress = ExtResource("5_sweqy")
 
 [connection signal="timeout" from="TimerDisparo" to="Gun" method="_on_timer_disparo_timeout"]

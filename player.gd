@@ -44,6 +44,7 @@ func _on_timer_timeout():
 		
 func updateBar():
 	%ProgressBar.value = health
+	%TextureProgressBar.value = 100 - health
 	money_change.emit()
 func _process(delta):
 	if health <= bullet_hell_trigger and current_state != PlayerState.BULLET_HELL:
