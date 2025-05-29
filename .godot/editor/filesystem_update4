@@ -1,3 +1,6 @@
+res://levels.tscn
+res://svgame.gd
+res://levels/Level1.tscn
 res://menu.tscn
 res://characters/enemigo/slime.tscn
 res://mob.tscn
@@ -5,9 +8,5 @@ res://GameOver.tscn
 res://player.tscn
 res://svgame.tscn
 res://gun.tscn
-res://levels/Level1.tscn
-res://LevelSelect.tscn
-res://level_select.gd
 res://menu.gd
-res://levels/Level2.tscn
-res://svgame.gd
+res://VictoryScreen.tscn

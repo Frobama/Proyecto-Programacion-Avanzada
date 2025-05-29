@@ -1,13 +1,12 @@
-[gd_scene load_steps=24 format=4 uid="uid://dcqluj7mfg01d"]
+[gd_scene load_steps=23 format=4 uid="uid://dcqluj7mfg01d"]
 
 [ext_resource type="Script" uid="uid://brmpap0dham6i" path="res://svgame.gd" id="1_bjmfr"]
 [ext_resource type="PackedScene" uid="uid://bdu6y60w2q3lk" path="res://player.tscn" id="1_kgt6l"]
 [ext_resource type="PackedScene" uid="uid://cm2huotep3byu" path="res://pine_tree.tscn" id="2_tg0xe"]
-[ext_resource type="PackedScene" uid="uid://6pq53edlbkv5" path="res://mob.tscn" id="3_tg0xe"]
 [ext_resource type="PackedScene" uid="uid://bsk2gbkj4yplw" path="res://pause.tscn" id="5_uce60"]
 [ext_resource type="Texture2D" uid="uid://du7kwfi15lkuw" path="res://tiles/fantasy_ [version 2.0]/fantasy_ [version 2.0]/taiga_/taiga_.png" id="6_6r4s4"]
 [ext_resource type="Texture2D" uid="uid://f83wgfq4xw1e" path="res://tiles/fantasy_ [version 2.0]/fantasy_ [version 2.0]/taiga_/taiga_ [resources].png" id="7_6r4s4"]
-[ext_resource type="FontFile" uid="uid://cjj7cfw4lp3ck" path="res://28 Days Later.ttf" id="8_7trrv"]
+[ext_resource type="FontFile" path="res://Fuentes/28 Days Later.ttf" id="8_7trrv"]
 [ext_resource type="Texture2D" uid="uid://ct533hcxe7ehw" path="res://tiles/Dungeon Gathering Free Version/Coin Sheet.png" id="9_28nt8"]
 
 [sub_resource type="Curve2D" id="Curve2D_uce60"]
@@ -275,15 +274,6 @@ script = ExtResource("1_bjmfr")
 
 [node name="Player" parent="." instance=ExtResource("1_kgt6l")]
 position = Vector2(1046, 652)
-
-[node name="Mob" parent="." instance=ExtResource("3_tg0xe")]
-position = Vector2(533, 414)
-
-[node name="Mob2" parent="." instance=ExtResource("3_tg0xe")]
-position = Vector2(998, 345)
-
-[node name="Mob3" parent="." instance=ExtResource("3_tg0xe")]
-position = Vector2(319, 916)
 
 [node name="PineTree" parent="." instance=ExtResource("2_tg0xe")]
 position = Vector2(408, 281)
