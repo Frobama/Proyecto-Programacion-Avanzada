@@ -4,12 +4,15 @@ extends Area2D
 @onready var already_hit = []
 @onready var animation = $AnimatedSprite2D
 @onready var hitbox = $Hitbox
+@onready var sound = $SFX
+
 var moving = true
 var speed = 100
 var direction = Vector2.ZERO
 
 func _ready():
 	animation.play("travel")
+	sound.play()
 	hitbox.monitoring = true
 	hitbox.monitorable = true
 	$Hitbox/CollisionShape2D.disabled = false
@@ -61,3 +64,6 @@ func _on_timer_timeout() -> void:
 		
 	hitbox.monitoring = false
 	animation.play("hit")
+	var explosion = load("res://sounds/explosion.wav")
+	sound.stream = explosion
+	sound.play()

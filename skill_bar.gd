@@ -9,3 +9,4 @@ func _ready():
 		
 	
 	slots[0].skill = ExplosionQuimica.new(slots[0])
+	slots[1].skill = Gaviotas.new(slots[1])

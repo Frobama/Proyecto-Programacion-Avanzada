@@ -1,7 +1,7 @@
 extends Control
 
 # URL de conexión
-var _host = "ws://ucn-game-server.martux.cl/ws"
+var _host = "ws://ucn-game-server.martux.cl:4010/"
 @onready var _client: WebSocketClient = $WebSocketClient
 
 # Referencias a los nodos de la UI

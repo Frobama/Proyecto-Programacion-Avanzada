@@ -5,6 +5,8 @@ var type = 1#Pistola normal
 #tipo 3: rifle (dispara mas rapido)
 var puede_disparar = true
 
+@onready var sound_pistol = $SFX_pistola
+
 func shoot():
 	if not puede_disparar:
 		return
@@ -23,6 +25,7 @@ func shoot():
 		new_bullet.shooter = self
 		new_bullet.get_node("Projectile").modulate = Color("e54b4af2")
 		get_tree().current_scene.add_child(new_bullet)
+		sound_pistol.play()
 		puede_disparar = false
 		$"../TimerDisparo".start()
 	

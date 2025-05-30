@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b25j1if1jj1dk"]
+[gd_scene load_steps=15 format=3 uid="uid://b25j1if1jj1dk"]
 
 [ext_resource type="Texture2D" uid="uid://dcw27qgik2al2" path="res://skill_sprites/Explosion_1/Explosion_3.png" id="1_575ln"]
 [ext_resource type="Script" uid="uid://yjamodximawc" path="res://skills/explosion_quimica_hit.gd" id="1_ur8ro"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://brcuevi2u62kr" path="res://skill_sprites/Explosion_1/Explosion_10.png" id="8_m6st1"]
 [ext_resource type="Texture2D" uid="uid://b1x0ugbnxlq0s" path="res://skill_sprites/Explosion_1/Explosion_1.png" id="9_uoh5c"]
 [ext_resource type="Texture2D" uid="uid://jadr6o8snxv7" path="res://skill_sprites/Explosion_1/Explosion_2.png" id="10_8tyep"]
+[ext_resource type="AudioStream" uid="uid://cgnmadf3p4g07" path="res://sounds/throw.wav" id="12_5e730"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_58ckn"]
 animations = [{
@@ -85,6 +86,9 @@ shape = SubResource("CircleShape2D_ur8ro")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_5e730")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_body_entered"]

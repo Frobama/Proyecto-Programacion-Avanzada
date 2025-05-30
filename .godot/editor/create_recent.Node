@@ -1,5 +1,10 @@
-Node2D
+AudioStreamPlayer2D
+StaticBody2D
+Area2D
+CollisionShape2D
 AnimatedSprite2D
+AudioStreamPlayer
+Node2D
 HBoxContainer
 CanvasLayer
 Label
@@ -8,5 +13,3 @@ Panel
 TextureButton
 AnimationPlayer
 CharacterBody2D
-Node
-Button

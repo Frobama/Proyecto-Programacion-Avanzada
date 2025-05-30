@@ -21,6 +21,7 @@ var change_key = "":
 func _ready():
 	change_key = "1"
 	cooldown.max_value = timer.wait_time
+	cooldown.value = 0
 	set_process(false)
 	
 func _process(_delta):

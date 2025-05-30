@@ -9,6 +9,9 @@ var travelled_distance := 0.0
 
 var shooter = null #la entidad que dispara la bala
 
+func _ready():
+	add_to_group("balas")
+	
 func _physics_process(delta):
 	position += direction.normalized() * speed * delta
 	travelled_distance += speed * delta

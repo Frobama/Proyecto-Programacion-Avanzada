@@ -6,6 +6,15 @@ res://player.tscn
 res://svgame.tscn
 res://gun.tscn
 res://levels.tscn
-res://mob.gd
-res://gun.gd
+res://skills/ExplosionQuimica.tscn
+res://skill_button.tscn
+res://chat-window.tscn
+res://ChatManager.gd
+res://skills/Gaviota.tscn
+res://skills/llamado_gaviotas.gd
+res://skill_bar.gd
+res://skills/gaviota.gd
 res://bullet.gd
+res://bullet.tscn
+res://pine_tree.tscn
+res://gun.gd

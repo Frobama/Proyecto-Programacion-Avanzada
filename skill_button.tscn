@@ -23,7 +23,6 @@ offset_right = 160.0
 offset_bottom = 145.0
 scale = Vector2(0.97, 1.1)
 step = 0.01
-value = 30.0
 fill_mode = 5
 texture_progress = ExtResource("3_lvoiw")
 tint_progress = Color(0.206818, 0.401931, 0.571402, 0.462745)
