@@ -2,18 +2,26 @@ extends Node2D
 
 var is_bullet_hell = false
 var num_mob = 0
-var remaining_time = 60 #duracion del nivel en segundos
+@export var remaining_time: int = 60  # Tiempo variable entre niveles, cambiar desde el inspector
+@export var mob_limit: int = 10  # Número máximo de mobs editable en cada nivel, cambiar desde el inspector
+
+var halftime = 0  # inicialmente 0, se actualizará al inicio
+var doubled_mob_limit = false  # Bandera para saber si ya duplicamos el límite de mobs
+
 
 @onready var countdown_timer = $CountdownTimer
 @onready var time_label = $CanvasLayer/TimeLabel
 @onready var money_label = $CanvasLayer/HBoxContainer/MoneyLabel
 
 func _ready() -> void:
+	halftime = remaining_time / 2
+	
 	var player = get_node("Player")
 	player.connect("request_bullet_hell", Callable(self, "_on_enter_bullet_hell"))
 	player.connect("request_bullet_hell_end", Callable(self, "_on_exit_bullet_hell"))
 	player.connect("health_depleted", Callable(self, "_on_player_health_depleted"))
-	#asigna el player a todos los mobs existentes ya colocados en el editor desde antes
+	
+	# Asigna el player a todos los mobs existentes ya colocados en el editor
 	for child in get_children():
 		if child is Mob:
 			child.player = player
@@ -21,49 +29,52 @@ func _ready() -> void:
 	$CanvasLayer/HBoxContainer/AnimatedSprite2D.play("moneda")
 	$CountdownTimer.start()
 	update_timer_label()
-	
+
 func _on_enter_bullet_hell():
 	is_bullet_hell = true
 	var childs = get_children()
-	
 	for child in childs:
 		if child is Mob:
 			child.bullet_hell_mode = true
-	
+
 func _on_exit_bullet_hell():
 	is_bullet_hell = false
-	
 	var childs = get_children()
-	
 	for child in childs:
 		if child is Mob:
 			child.bullet_hell_mode = false
-	
+
+func mob_time_progression():
+	if remaining_time <= halftime and not doubled_mob_limit:
+		print("Mitad del tiempo alcanzada: ", remaining_time)
+		mob_limit = mob_limit * 2  # Duplica el límite de mobs
+		doubled_mob_limit = true  # Marca que ya se duplicó el límite
+		print("Nuevo límite de mobs: ", mob_limit)
+
 func spawn_mob():
-	if(num_mob < 10):
+	if num_mob < mob_limit:
 		var new_mob = preload("res://mob.tscn").instantiate()
 		new_mob.connect("death", Callable(self, "mob_death"))
 		%PathFollow2D.progress_ratio = randf()
 		new_mob.global_position = %PathFollow2D.global_position
 		
-		#asignar el jugador al mob spawneado
+		# Asignar el jugador al mob spawneado
 		var player = get_node_or_null("Player")
 		if player:
 			new_mob.player = player
 		else:
-			print("no se encontró al jugador para asignarlo al mob")
+			print("No se encontró al jugador para asignarlo al mob")
 		
 		add_child(new_mob)
 		num_mob += 1
 
 func mob_death():
 	num_mob -= 1
-	
-		
+
 func _on_timer_timeout():
 	if not is_bullet_hell:
 		spawn_mob()
-
+	mob_time_progression()  # Actualiza la progresión de los mobs
 
 func _on_player_health_depleted():
 	var scene = preload("res://GameOver.tscn")
@@ -75,9 +86,7 @@ func _on_player_health_depleted():
 
 	add_child(ui_layer)
 
-	
 	game_over.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
-	
 	await get_tree().create_timer(0.01).timeout
 	get_tree().paused = true
 
@@ -97,21 +106,16 @@ func show_victory_screen():
 	add_child(ui_layer)
 
 	victory.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
-	
 	await get_tree().create_timer(0.01).timeout
 	get_tree().paused = true
 
-
 func _on_CountdownTimer_timeout():
-	print("Timer funcionando")
 	remaining_time -= 1
 	update_timer_label()
 
 	if remaining_time <= 0:
 		$CountdownTimer.stop()
 		show_victory_screen()
-
-
 
 func _on_player_money_change(cantidad) -> void:
 	money_label.text = "Dinero: $" + str(cantidad)

@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://co6h5le8jfhnd"]
+[gd_scene load_steps=8 format=3 uid="uid://bsoy8iyd0ek4u"]
 
-[ext_resource type="Script" uid="uid://brla0a6t08457" path="res://levels.gd" id="1_hbfth"]
+[ext_resource type="Script" path="res://levels.gd" id="1_hbfth"]
 [ext_resource type="Texture2D" uid="uid://bcknecosj581f" path="res://addons/c3e0093c-7a14-4904-83af-b9c722dfa83d.png" id="2_02xe8"]
-[ext_resource type="FontFile" uid="uid://cjj7cfw4lp3ck" path="res://Fuentes/28 Days Later.ttf" id="3_xv4fl"]
+[ext_resource type="FontFile" path="res://Fuentes/28 Days Later.ttf" id="3_xv4fl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0aun"]
 bg_color = Color(0, 0.2, 0, 1)
