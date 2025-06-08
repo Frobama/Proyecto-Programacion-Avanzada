@@ -1,0 +1,73 @@
+[gd_scene load_steps=14 format=3 uid="uid://b3vcd7l5h3x7g"]
+
+[ext_resource type="Script" uid="uid://b4lph2jowxj20" path="res://skills/terremoto_hit.gd" id="1_b05g5"]
+[ext_resource type="Texture2D" uid="uid://d14kj2vutnomj" path="res://skill_sprites/Explosion_8/Explosion_1.png" id="2_w6dgp"]
+[ext_resource type="Texture2D" uid="uid://cw20vqlnbi7ig" path="res://skill_sprites/Explosion_8/Explosion_2.png" id="3_1r0vf"]
+[ext_resource type="Texture2D" uid="uid://cv6tk0unki1tx" path="res://skill_sprites/Explosion_8/Explosion_3.png" id="4_445s6"]
+[ext_resource type="Texture2D" uid="uid://ck3yjouxjflrv" path="res://skill_sprites/Explosion_8/Explosion_4.png" id="5_mbaem"]
+[ext_resource type="Texture2D" uid="uid://dwdjra5hkg2hx" path="res://skill_sprites/Explosion_8/Explosion_5.png" id="6_0n4p6"]
+[ext_resource type="Texture2D" uid="uid://c5vmr0ucmqcjo" path="res://skill_sprites/Explosion_8/Explosion_6.png" id="7_2ro56"]
+[ext_resource type="Texture2D" uid="uid://c8xveeo1djxa" path="res://skill_sprites/Explosion_8/Explosion_7.png" id="8_2wqrd"]
+[ext_resource type="Texture2D" uid="uid://blsqdrni827bs" path="res://skill_sprites/Explosion_8/Explosion_8.png" id="9_wiy7e"]
+[ext_resource type="Texture2D" uid="uid://dkatvyr1huudy" path="res://skill_sprites/Explosion_8/Explosion_9.png" id="10_8wh6c"]
+[ext_resource type="Texture2D" uid="uid://1dcecgpdy403" path="res://skill_sprites/Explosion_8/Explosion_10.png" id="11_iwlbc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ypexv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_w6dgp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1r0vf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_445s6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mbaem")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0n4p6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2ro56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2wqrd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_wiy7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_8wh6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_iwlbc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b05g5"]
+radius = 275.002
+
+[node name="Terremoto" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_b05g5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.57, 0.2185, 0, 1)
+position = Vector2(-4, -200)
+sprite_frames = SubResource("SpriteFrames_ypexv")
+frame = 9
+frame_progress = 1.0
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-6, -114)
+shape = SubResource("CircleShape2D_b05g5")

@@ -16,7 +16,11 @@ var rotation_speed = 1.0 # Velocidad de rotación angular (radianes/segundo)
 var orbit_radius = 100.0 # Distancia del mob al jugador
 var orbit_angle = 0.0 # Ángulo actual del mob alrededor del jugador
 
+var impulso_actual := Vector2.ZERO
+var decaimiento_impulso := 10.0
+
 var esta_muriendo = false
+var aturdido = false
 
 func _ready():
 	%Slime.play_walk()
@@ -26,15 +30,21 @@ func _physics_process(delta):
 	if player == null:
 		return
 		
-	if not bullet_hell_mode and not esta_muriendo:
-		var direction = global_position.direction_to(player.global_position)
-		velocity = direction * 300.0
+	if aturdido:
+		velocity = impulso_actual
+		impulso_actual = impulso_actual.move_toward(Vector2.ZERO, decaimiento_impulso * delta)
+		if impulso_actual.length() < 1.0:
+			aturdido = false
 		move_and_slide()
+		return
+		
+	var dir_velocity := Vector2.ZERO
+	
+	if not bullet_hell_mode and not esta_muriendo:
+		dir_velocity = global_position.direction_to(player.global_position) * 300
 		
 	elif not bullet_hell_mode and esta_muriendo:
-		var direction = global_position.direction_to(player.global_position)
-		velocity = direction * 100.0
-		move_and_slide()
+		dir_velocity = global_position.direction_to(player.global_position) * 100
 		
 	else:
 		# Calcular el vector desde el jugador al mob
@@ -47,23 +57,22 @@ func _physics_process(delta):
 		if abs(current_distance - desired_distance) > 10:
 			# Moverse radialmente hacia la distancia deseada de forma suave
 			var radial_direction = to_mob.normalized()
-			var radial_speed = 50.0  # Velocidad de alejamiento/acercamiento
-			velocity = radial_direction * ((desired_distance - current_distance) * 2.0)
-			move_and_slide()
+			dir_velocity = radial_direction * ((desired_distance - current_distance) * 2.0)
 		else:
 			# Calcular vector tangente (rotación 90°)
 			var tangent = Vector2(-to_mob.y, to_mob.x).normalized()
-
-		# Moverse tangencialmente
-			var speed = 100.0  # Puedes ajustar esta velocidad
-			velocity = tangent * speed
-			move_and_slide()
+			dir_velocity = tangent * 100.0
+			
 		
 		shoot_timer += delta
 		if shoot_timer >= shoot_interval:
 			shoot_timer = 0.0
 			shoot_radial_pattern()
-
+	
+	impulso_actual = impulso_actual.move_toward(Vector2.ZERO, decaimiento_impulso * delta)
+	velocity = dir_velocity + impulso_actual
+	move_and_slide()
+	
 func take_damage(damage):
 	if esta_muriendo:
 		return
@@ -95,3 +104,9 @@ func shoot_radial_pattern():
 		bullet.is_enemy_bullet = true
 		bullet.shooter = self
 		get_tree().current_scene.add_child(bullet)
+
+func empujar(impulso: Vector2) -> void:
+	impulso_actual += impulso
+	aturdido = true
+	await get_tree().create_timer(0.1).timeout # Duración del empuje
+	aturdido = false

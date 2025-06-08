@@ -70,6 +70,7 @@ script = ExtResource("1_ur8ro")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(0.32549, 0.862745, 0.168627, 1)
+visibility_layer = 2
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_58ckn")
 animation = &"hit"

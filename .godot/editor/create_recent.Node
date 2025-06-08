@@ -1,8 +1,8 @@
-AudioStreamPlayer2D
-StaticBody2D
 Area2D
 CollisionShape2D
 AnimatedSprite2D
+AudioStreamPlayer2D
+StaticBody2D
 AudioStreamPlayer
 Node2D
 HBoxContainer
@@ -12,4 +12,3 @@ TextureProgressBar
 Panel
 TextureButton
 AnimationPlayer
-CharacterBody2D
