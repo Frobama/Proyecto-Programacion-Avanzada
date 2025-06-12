@@ -33,6 +33,7 @@ func _on_body_entered(body):
 	
 	
 func explotar():
+	
 	speed = 0
 	direction = Vector2.ZERO
 	
@@ -64,6 +65,7 @@ func _on_timer_timeout() -> void:
 		
 	hitbox.monitoring = false
 	animation.play("hit")
+	get_viewport().get_camera_2d().shake()
 	var explosion = load("res://sounds/explosion.wav")
 	sound.stream = explosion
 	sound.play()

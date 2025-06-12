@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bsk2gbkj4yplw" path="res://pause.tscn" id="5_uce60"]
 [ext_resource type="Texture2D" uid="uid://du7kwfi15lkuw" path="res://tiles/fantasy_ [version 2.0]/fantasy_ [version 2.0]/taiga_/taiga_.png" id="6_6r4s4"]
 [ext_resource type="Texture2D" uid="uid://f83wgfq4xw1e" path="res://tiles/fantasy_ [version 2.0]/fantasy_ [version 2.0]/taiga_/taiga_ [resources].png" id="7_6r4s4"]
-[ext_resource type="FontFile" path="res://Fuentes/28 Days Later.ttf" id="8_7trrv"]
+[ext_resource type="FontFile" uid="uid://bjpw7d5iwbmnm" path="res://Fuentes/28 Days Later.ttf" id="8_7trrv"]
 [ext_resource type="Texture2D" uid="uid://ct533hcxe7ehw" path="res://tiles/Dungeon Gathering Free Version/Coin Sheet.png" id="9_28nt8"]
 
 [sub_resource type="Curve2D" id="Curve2D_uce60"]

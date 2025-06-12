@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3vcd7l5h3x7g"]
+[gd_scene load_steps=15 format=3 uid="uid://b3vcd7l5h3x7g"]
 
 [ext_resource type="Script" uid="uid://b4lph2jowxj20" path="res://skills/terremoto_hit.gd" id="1_b05g5"]
 [ext_resource type="Texture2D" uid="uid://d14kj2vutnomj" path="res://skill_sprites/Explosion_8/Explosion_1.png" id="2_w6dgp"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://blsqdrni827bs" path="res://skill_sprites/Explosion_8/Explosion_8.png" id="9_wiy7e"]
 [ext_resource type="Texture2D" uid="uid://dkatvyr1huudy" path="res://skill_sprites/Explosion_8/Explosion_9.png" id="10_8wh6c"]
 [ext_resource type="Texture2D" uid="uid://1dcecgpdy403" path="res://skill_sprites/Explosion_8/Explosion_10.png" id="11_iwlbc"]
+[ext_resource type="AudioStream" uid="uid://dgrp8rj81yul4" path="res://sounds/punch.wav" id="12_w6dgp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ypexv"]
 animations = [{
@@ -60,6 +61,9 @@ script = ExtResource("1_b05g5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.57, 0.2185, 0, 1)
+show_behind_parent = true
+visibility_layer = 512
+z_index = -1
 position = Vector2(-4, -200)
 sprite_frames = SubResource("SpriteFrames_ypexv")
 frame = 9
@@ -71,3 +75,6 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-6, -114)
 shape = SubResource("CircleShape2D_b05g5")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_w6dgp")

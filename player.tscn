@@ -1,13 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://bdu6y60w2q3lk"]
+[gd_scene load_steps=24 format=3 uid="uid://bdu6y60w2q3lk"]
 
 [ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://7c2h0hbw3u3c" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://dekiv3yausike" path="res://gun.tscn" id="2_i3pqv"]
+[ext_resource type="Script" uid="uid://m5lgjfedbg6y" path="res://camera_2d.gd" id="4_b26j0"]
 [ext_resource type="Texture2D" uid="uid://cy72u0mfcqvna" path="res://characters/happy_boo/ucenin.png" id="4_hqtel"]
-[ext_resource type="Script" uid="uid://b6mkl5ps3jjf2" path="res://skill_bar.gd" id="5_1jxqw"]
+[ext_resource type="Script" path="res://skill_bar.gd" id="5_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://cksiu5gst6fmp" path="res://characters/happy_boo/square_body.png" id="5_sweqy"]
-[ext_resource type="PackedScene" uid="uid://crd7jun2l85l3" path="res://skill_button.tscn" id="6_dw050"]
-[ext_resource type="FontFile" uid="uid://cjj7cfw4lp3ck" path="res://Fuentes/28 Days Later.ttf" id="8_dw050"]
+[ext_resource type="PackedScene" uid="uid://x0ttflo5cm2a" path="res://skill_button.tscn" id="6_dw050"]
+[ext_resource type="FontFile" uid="uid://bjpw7d5iwbmnm" path="res://Fuentes/28 Days Later.ttf" id="8_dw050"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 29.21
@@ -136,6 +137,7 @@ shape = SubResource("CircleShape2D_onrkg")
 debug_color = Color(0.898039, 0.294118, 0.290196, 0.94902)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("4_b26j0")
 
 [node name="HurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true

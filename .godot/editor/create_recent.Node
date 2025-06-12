@@ -1,9 +1,9 @@
+AudioStreamPlayer
 Button
 VBoxContainer
 AnimatedSprite2D
 AudioStreamPlayer2D
 StaticBody2D
-AudioStreamPlayer
 Node2D
 HBoxContainer
 Timer
@@ -12,9 +12,3 @@ CharacterBody2D
 Node
 Label
 ColorRect
-CanvasLayer
-Label
-TextureProgressBar
-Panel
-TextureButton
-AnimationPlayer

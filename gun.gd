@@ -65,7 +65,7 @@ func shoot():
 		new_bullet3.shooter = self
 		new_bullet3.get_node("Projectile").modulate = Color("e54b4af2")
 		
-		
+		sound_pistol.play()
 		get_tree().current_scene.add_child(new_bullet)
 		get_tree().current_scene.add_child(new_bullet2)
 		get_tree().current_scene.add_child(new_bullet3)

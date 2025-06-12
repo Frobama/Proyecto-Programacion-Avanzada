@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://doaf4qq5apyd"]
+[gd_scene load_steps=15 format=3 uid="uid://doaf4qq5apyd"]
 
 [ext_resource type="Script" uid="uid://bn4xoh8tdsy8c" path="res://skills/gaviota.gd" id="1_8p60q"]
 [ext_resource type="Texture2D" uid="uid://k2dfqnmpkcun" path="res://skill_sprites/gaviotas.png" id="1_nwb37"]
+[ext_resource type="AudioStream" uid="uid://s48tregnf71s" path="res://sounds/seagull.wav" id="3_5mo47"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8p60q"]
 atlas = ExtResource("1_nwb37")
@@ -100,5 +101,8 @@ visibility_layer = 7
 position = Vector2(-2, 5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_c0tfx")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5mo47")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
