@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://jyxwy1h20aea"]
+
+[sub_resource type="GDScript" id="GDScript_4cn36"]
+script/source = "extends Node2D
+
+@onready var player = AudioStreamPlayer.new()
+
+var current_track = null
+
+func _ready():
+	add_child(player)
+	
+func play_music(track: AudioStream):
+	if current_track == track:
+		return
+	
+	current_track = track
+	player.stream = track
+	player.play()
+	"
+
+[node name="MusicManager" type="Node2D"]
+script = SubResource("GDScript_4cn36")

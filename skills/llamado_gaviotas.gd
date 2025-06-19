@@ -28,6 +28,7 @@ func cast_skill(target):
 	var sfx = AudioStreamPlayer.new()
 	sfx.stream = preload("res://sounds/seagull.wav")
 	target.get_tree().current_scene.add_child(sfx)
+	sfx.volume_db = -12
 	for i in range(4):
 		sfx.play()
 		await target.get_tree().create_timer(0.5).timeout

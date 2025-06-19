@@ -14,6 +14,9 @@ var doubled_mob_limit = false  # Bandera para saber si ya duplicamos el límite 
 @onready var money_label = $CanvasLayer/HBoxContainer/MoneyLabel
 
 func _ready() -> void:
+	BocinaPrincipal.stream = preload("res://songs/OST1.ogg")
+	BocinaPrincipal.stream.loop = true
+	BocinaPrincipal.play()
 	halftime = remaining_time / 2
 	
 	var player = get_node("Player")

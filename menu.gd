@@ -3,6 +3,7 @@ var sonidoFondo = preload("res://songs/ObservingTheStar.ogg")
 
 func _ready():
 	BocinaPrincipal.stream = sonidoFondo
+	BocinaPrincipal.stream.loop = true
 	BocinaPrincipal.play()
 func _on_pressed() -> void:
 	get_tree().change_scene_to_file("res://levels.tscn")

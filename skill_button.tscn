@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://x0ttflo5cm2a"]
 
-[ext_resource type="Script" path="res://skill_button.gd" id="2_4hjyh"]
+[ext_resource type="Script" uid="uid://cgy3uo67txojm" path="res://skill_button.gd" id="2_4hjyh"]
 [ext_resource type="Texture2D" uid="uid://cksiu5gst6fmp" path="res://characters/happy_boo/square_body.png" id="3_lvoiw"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_u4o8d"]

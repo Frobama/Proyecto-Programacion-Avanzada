@@ -1,4 +1,5 @@
 res://menu.tscn
+res://svgame.gd
 res://characters/enemigo/slime.tscn
 res://mob.tscn
 res://GameOver.tscn
@@ -11,9 +12,9 @@ res://skills/Terremoto.tscn
 res://skills/ExplosionQuimica.tscn
 res://skills/Gaviota.tscn
 res://chat-window.tscn
-res://player.gd
-res://bullet.gd
-res://skills/botiquin.gd
-res://skills/heal_effect.gd
 res://skills/HealEffect.tscn
+res://songs/bocina_principal.tscn
+res://music_manager.tscn
 res://skill_bar.gd
+res://skills/llamado_gaviotas.gd
+res://menu.gd

@@ -203,6 +203,11 @@ clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="SkillButton4" parent="UI/SkillBar" instance=ExtResource("6_dw050")]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="TimerDisparo" type="Timer" parent="."]
 wait_time = 0.7
 one_shot = true

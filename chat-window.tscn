@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dqtemb164ydt6"]
 
-[ext_resource type="Script" path="res://WebSocket.gd" id="1_17dk5"]
-[ext_resource type="Script" path="res://ChatManager.gd" id="1_xfcp1"]
+[ext_resource type="Script" uid="uid://bayxta7ro05ke" path="res://WebSocket.gd" id="1_17dk5"]
+[ext_resource type="Script" uid="uid://dxnfs4sa6jnli" path="res://ChatManager.gd" id="1_xfcp1"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
