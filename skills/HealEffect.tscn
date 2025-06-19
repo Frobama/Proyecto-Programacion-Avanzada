@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8b0q4kjyxnee"]
+
+[ext_resource type="Script" uid="uid://ckvu6p0tmanc2" path="res://skills/heal_effect.gd" id="1_u4qbf"]
+[ext_resource type="Texture2D" uid="uid://l66ooytvmi62" path="res://skill_sprites/heal/Explosion_3_1.png" id="2_plh7s"]
+[ext_resource type="Texture2D" uid="uid://bdcqdam6maptc" path="res://skill_sprites/heal/Explosion_3_2.png" id="3_s1mng"]
+[ext_resource type="Texture2D" uid="uid://g3h33dxq0y57" path="res://skill_sprites/heal/Explosion_3_3.png" id="4_0nvgg"]
+[ext_resource type="Texture2D" uid="uid://blmnla1qemb0y" path="res://skill_sprites/heal/Explosion_3_4.png" id="5_f7rp3"]
+[ext_resource type="AudioStream" uid="uid://vuom6xubu1n4" path="res://sounds/heal.wav" id="6_v3ljr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rxn6g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_plh7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s1mng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0nvgg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f7rp3")
+}],
+"loop": false,
+"name": &"heal",
+"speed": 12.0
+}]
+
+[node name="HealEffect" type="Node2D"]
+script = ExtResource("1_u4qbf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.298039, 1, 0.470588, 1)
+show_behind_parent = true
+sprite_frames = SubResource("SpriteFrames_rxn6g")
+animation = &"heal"
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_v3ljr")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

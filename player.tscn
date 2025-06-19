@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dekiv3yausike" path="res://gun.tscn" id="2_i3pqv"]
 [ext_resource type="Script" uid="uid://m5lgjfedbg6y" path="res://camera_2d.gd" id="4_b26j0"]
 [ext_resource type="Texture2D" uid="uid://cy72u0mfcqvna" path="res://characters/happy_boo/ucenin.png" id="4_hqtel"]
-[ext_resource type="Script" path="res://skill_bar.gd" id="5_1jxqw"]
+[ext_resource type="Script" uid="uid://b6mkl5ps3jjf2" path="res://skill_bar.gd" id="5_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://cksiu5gst6fmp" path="res://characters/happy_boo/square_body.png" id="5_sweqy"]
 [ext_resource type="PackedScene" uid="uid://x0ttflo5cm2a" path="res://skill_button.tscn" id="6_dw050"]
 [ext_resource type="FontFile" uid="uid://bjpw7d5iwbmnm" path="res://Fuentes/28 Days Later.ttf" id="8_dw050"]
@@ -17,14 +17,14 @@ radius = 29.21
 radius = 36.3456
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3pqv"]
-bg_color = Color(0.0313726, 0.788235, 0, 1)
+bg_color = Color(0.301961, 0.301961, 0.301961, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqtel"]
-bg_color = Color(0.301961, 0.301961, 0.301961, 1)
+bg_color = Color(0.0313726, 0.788235, 0, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -157,7 +157,6 @@ offset_bottom = -103.0
 theme_override_styles/background = SubResource("StyleBoxFlat_i3pqv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hqtel")
 value = 100.0
-fill_mode = 1
 show_percentage = false
 
 [node name="Ucenin" type="AnimatedSprite2D" parent="."]

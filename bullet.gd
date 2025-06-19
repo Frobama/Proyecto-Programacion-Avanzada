@@ -24,6 +24,8 @@ func _on_body_entered(body):
 		return #Se evita que la bala choque con la propia hitbox del que dispara
 	if is_enemy_bullet and body.name == "Player":
 		body.health -= 5
+		if body.current_state == body.PlayerState.BULLET_HELL:
+			body.contaminacion += 5
 		body.updateBar()
 	elif not is_enemy_bullet and body.name != "Player":
 		if body.has_method("take_damage"):

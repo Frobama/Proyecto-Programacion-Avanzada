@@ -1,8 +1,8 @@
 AudioStreamPlayer
+AudioStreamPlayer2D
+AnimatedSprite2D
 Button
 VBoxContainer
-AnimatedSprite2D
-AudioStreamPlayer2D
 StaticBody2D
 Node2D
 HBoxContainer

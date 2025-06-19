@@ -16,8 +16,8 @@ func _init(target):
 	
 func cast_skill(target):
 	super.cast_skill(target)
-	
 	var jugador = target.global_position
+	
 	
 	for i in range(cantidad_entidades):
 		

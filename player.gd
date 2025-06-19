@@ -7,11 +7,13 @@ signal request_bullet_hell_end
 signal money_change
 
 var health = 100.0
+var max_health = 100
+var contaminacion = 0
 
 enum PlayerState { NORMAL, BULLET_HELL }
 var current_state = PlayerState.NORMAL
 
-var bullet_hell_trigger = 90
+var bullet_hell_trigger = 50
 
 var money = 0
 
@@ -32,6 +34,7 @@ func _physics_process(delta):
 	var overlapping_mobs = %HurtBox.get_overlapping_bodies()
 	if overlapping_mobs.size() > 0:
 		health -= DAMAGE_RATE * overlapping_mobs.size() * delta
+		contaminacion += DAMAGE_RATE * overlapping_mobs.size() * delta * 1.5
 		updateBar()
 	if health <= 0.0:
 		health_depleted.emit()
@@ -39,21 +42,29 @@ func _physics_process(delta):
 		
 func _on_timer_timeout():
 	if current_state == PlayerState.BULLET_HELL:
-		health += 5
+		contaminacion -= 5
+		health += 1
+		if health > max_health:
+			health = max_health
 		updateBar()
 		
+	else:
+		health += 1
+		if health > max_health:
+			health = max_health
+		updateBar()
 func updateBar():
 	%ProgressBar.value = health
-	%TextureProgressBar.value = 100 - health
+	%TextureProgressBar.value = contaminacion
 	money_change.emit()
 func _process(delta):
-	if health <= bullet_hell_trigger and current_state != PlayerState.BULLET_HELL:
+	if contaminacion >= 90 and current_state != PlayerState.BULLET_HELL:
 		request_bullet_hell.emit()
-		health = 10
 		current_state = PlayerState.BULLET_HELL
-	elif health > bullet_hell_trigger and current_state != PlayerState.NORMAL:
+	elif contaminacion < 10 and current_state != PlayerState.NORMAL:
 		request_bullet_hell_end.emit()
 		current_state = PlayerState.NORMAL
+		contaminacion = 0
 
 func look_at_mouse():
 	var mouse_pos = get_global_mouse_position()
@@ -62,3 +73,8 @@ func look_at_mouse():
 func add_money(cantidad):
 	money += cantidad
 	emit_signal("money_change", money)
+
+func heal(amount):
+	health += amount
+	health = min(health, max_health)
+	updateBar()
