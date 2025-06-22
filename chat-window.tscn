@@ -12,11 +12,14 @@ script = ExtResource("1_xfcp1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 736.0
-offset_bottom = 491.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="ConnectButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.38
+theme_override_font_sizes/font_size = 50
 toggle_mode = true
 text = "CONNECT TO SERVER"
 
@@ -30,29 +33,48 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 editable = false
 
-[node name="UserList" type="ItemList" parent="VBoxContainer/MainPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MainPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.35
+size_flags_stretch_ratio = 0.4
+
+[node name="UserList" type="ItemList" parent="VBoxContainer/MainPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="StartGameButton" type="Button" parent="VBoxContainer/MainPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+theme_override_font_sizes/font_size = 50
+text = "Start Game"
 
 [node name="Commands" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.28
 
 [node name="InputMessage" type="LineEdit" parent="VBoxContainer/Commands"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
 placeholder_text = "Send a message"
 expand_to_text_length = true
 
 [node name="SendButton" type="Button" parent="VBoxContainer/Commands"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.18
+theme_override_font_sizes/font_size = 50
 text = "SEND"
 
 [node name="WebSocketClient" type="Node" parent="."]
 script = ExtResource("1_17dk5")
 
 [connection signal="toggled" from="VBoxContainer/ConnectButton" to="." method="_on_connect_toggled"]
+[connection signal="item_selected" from="VBoxContainer/MainPanel/VBoxContainer/UserList" to="." method="_on_user_list_item_selected"]
+[connection signal="pressed" from="VBoxContainer/MainPanel/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="text_submitted" from="VBoxContainer/Commands/InputMessage" to="." method="_on_input_submitted"]
 [connection signal="pressed" from="VBoxContainer/Commands/SendButton" to="." method="_on_send_pressed"]
 [connection signal="connected_to_server" from="WebSocketClient" to="." method="_on_web_socket_client_connected_to_server"]

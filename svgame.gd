@@ -1,5 +1,6 @@
 extends Node2D
 
+var multijugador = false
 var is_bullet_hell = false
 var num_mob = 0
 @export var remaining_time: int = 60  # Tiempo variable entre niveles, cambiar desde el inspector
@@ -13,7 +14,12 @@ var doubled_mob_limit = false  # Bandera para saber si ya duplicamos el límite 
 @onready var time_label = $CanvasLayer/TimeLabel
 @onready var money_label = $CanvasLayer/HBoxContainer/MoneyLabel
 
+var chat_instance: Node = null
+
+
 func _ready() -> void:
+	if chat_instance != null:
+		chat_instance.svgame_instance = self
 	BocinaPrincipal.stream = preload("res://songs/OST1.ogg")
 	BocinaPrincipal.stream.loop = true
 	BocinaPrincipal.play()
@@ -126,3 +132,24 @@ func _on_player_money_change(cantidad) -> void:
 	if player.money > 5:
 		var arma = get_node("Player/Gun")
 		arma.type = 2
+	if player.money >= 15 and multijugador:
+		enviar_buff_enemigos()
+
+func enviar_buff_enemigos():
+	var player = get_node("Player")
+	if player.money >= 10:
+		player.add_money(-10)
+		chat_instance.send_attack({
+			"type": "buff_enemigos",
+			"duration": "10",
+			"extra_health": 3
+		})
+		
+func recibir_ataque(data):
+	match data.type:
+		"buff_enemigos":
+			var childs = get_children()
+			for child in childs:
+				if child is Mob:
+					child.health += data.extra_health
+					

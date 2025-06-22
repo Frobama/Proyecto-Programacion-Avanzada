@@ -15,7 +15,7 @@ var current_state = PlayerState.NORMAL
 
 var bullet_hell_trigger = 50
 
-var money = 0
+@export var money = 0
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left","move_right","move_up","move_down")
