@@ -208,6 +208,8 @@ func _start_game():
 	var juego = preload("res://svgame.tscn").instantiate()
 	juego.multijugador = true
 	juego.chat_instance = self
+	juego.remaining_time = 1000
+	juego.mob_limit = 13
 	get_tree().root.add_child(juego)
 	self.visible = false
 	get_tree().current_scene = juego

@@ -12,7 +12,7 @@ func _ready():
 func _on_retry_button_pressed():
 	print("retry")
 	get_tree().paused = false
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://levels.tscn")
 	
 func _on_exit_button_pressed():
 	print("exit")

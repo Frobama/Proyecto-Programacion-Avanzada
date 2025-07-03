@@ -8,3 +8,5 @@ res://chat-window.tscn
 res://VictoryScreen.tscn
 res://pause.tscn
 res://ChatManager.gd
+res://game_over.gd
+res://levels.tscn
