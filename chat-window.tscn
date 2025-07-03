@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqtemb164ydt6"]
+[gd_scene load_steps=5 format=3 uid="uid://dqtemb164ydt6"]
 
 [ext_resource type="Script" uid="uid://bayxta7ro05ke" path="res://WebSocket.gd" id="1_17dk5"]
 [ext_resource type="Script" uid="uid://dxnfs4sa6jnli" path="res://ChatManager.gd" id="1_xfcp1"]
+[ext_resource type="FontFile" uid="uid://bjpw7d5iwbmnm" path="res://Fuentes/28 Days Later.ttf" id="2_dkt45"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lb0m1"]
+bg_color = Color(0.09424, 0.12, 0.0648, 0.94902)
+border_width_left = 100
+border_width_top = 100
+border_width_right = 100
+border_width_bottom = 100
+border_color = Color(0, 0, 0, 1)
+border_blend = true
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,7 +20,47 @@ offset_right = 927.0
 offset_bottom = 521.0
 script = ExtResource("1_xfcp1")
 
+[node name="LoginPanel" type="Panel" parent="."]
+top_level = true
+layout_direction = 4
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -537.5
+offset_right = 960.0
+offset_bottom = 537.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lb0m1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoginPanel"]
+layout_direction = 1
+layout_mode = 0
+offset_left = 895.0
+offset_top = 485.5
+offset_right = 989.0
+offset_bottom = 555.5
+alignment = 1
+
+[node name="Label" type="Label" parent="LoginPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dkt45")
+theme_override_font_sizes/font_size = 25
+text = "Tu nombre: "
+
+[node name="PlayerNameInput" type="LineEdit" parent="LoginPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Accept" type="Button" parent="LoginPanel/VBoxContainer"]
+layout_mode = 2
+text = "Aceptar"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -50,6 +100,14 @@ size_flags_stretch_ratio = 0.2
 theme_override_font_sizes/font_size = 50
 text = "Start Game"
 
+[node name="CancelGameButton" type="Button" parent="VBoxContainer/MainPanel/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+theme_override_font_sizes/font_size = 50
+text = "Cancel"
+
 [node name="Commands" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -72,9 +130,11 @@ text = "SEND"
 [node name="WebSocketClient" type="Node" parent="."]
 script = ExtResource("1_17dk5")
 
+[connection signal="pressed" from="LoginPanel/VBoxContainer/Accept" to="." method="_on_accept_pressed"]
 [connection signal="toggled" from="VBoxContainer/ConnectButton" to="." method="_on_connect_toggled"]
 [connection signal="item_selected" from="VBoxContainer/MainPanel/VBoxContainer/UserList" to="." method="_on_user_list_item_selected"]
 [connection signal="pressed" from="VBoxContainer/MainPanel/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainPanel/VBoxContainer/CancelGameButton" to="." method="_on_cancel_game_button_pressed"]
 [connection signal="text_submitted" from="VBoxContainer/Commands/InputMessage" to="." method="_on_input_submitted"]
 [connection signal="pressed" from="VBoxContainer/Commands/SendButton" to="." method="_on_send_pressed"]
 [connection signal="connected_to_server" from="WebSocketClient" to="." method="_on_web_socket_client_connected_to_server"]

@@ -1,8 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cf1k5n0xyk7cx"]
 
 [ext_resource type="Script" uid="uid://c0eojl1iy0ctn" path="res://victory_screen.gd" id="1_44yii"]
-[ext_resource type="FontFile" uid="uid://cjj7cfw4lp3ck" path="res://Fuentes/28 Days Later.ttf" id="1_yvem7"]
-
+[ext_resource type="FontFile" uid="uid://bjpw7d5iwbmnm" path="res://Fuentes/28 Days Later.ttf" id="1_yvem7"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -51,5 +50,24 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yvem7")
 theme_override_font_sizes/font_size = 40
 text = "Volver al menú"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="RematchButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_yvem7")
+theme_override_font_sizes/font_size = 40
+text = "Enviar Revancha"
+
+[node name="LobbyButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_yvem7")
+theme_override_font_sizes/font_size = 40
+text = "Volver al Lobby"
 
 [connection signal="pressed" from="VBoxContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]

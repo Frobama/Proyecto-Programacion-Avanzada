@@ -175,6 +175,23 @@ libraries = {
 
 [node name="UI" type="CanvasLayer" parent="."]
 
+[node name="AttackNotification" type="Label" parent="UI"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.09
+anchor_right = 0.5
+anchor_bottom = 0.1
+offset_left = -81.5
+offset_top = -11.5
+offset_right = 81.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_dw050")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+
 [node name="SkillBar" type="HBoxContainer" parent="UI"]
 anchors_preset = 7
 anchor_left = 0.5

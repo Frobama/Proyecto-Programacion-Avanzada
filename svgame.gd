@@ -86,9 +86,14 @@ func _on_timer_timeout():
 	mob_time_progression()  # Actualiza la progresión de los mobs
 
 func _on_player_health_depleted():
+	if chat_instance and multijugador:
+		chat_instance._send_death()
+		print("muerte enviada")
+		await get_tree().create_timer(0.01).timeout
 	var scene = preload("res://GameOver.tscn")
 	var game_over = scene.instantiate()
-
+	if multijugador:
+		game_over.online()
 	var ui_layer = CanvasLayer.new()
 	ui_layer.layer = 1
 	ui_layer.add_child(game_over)
@@ -98,6 +103,9 @@ func _on_player_health_depleted():
 	game_over.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	await get_tree().create_timer(0.01).timeout
 	get_tree().paused = true
+	
+	if multijugador:
+		show_end_popup(false)
 
 func update_timer_label():
 	var minutes = remaining_time / 60
@@ -107,7 +115,8 @@ func update_timer_label():
 func show_victory_screen():
 	var scene = preload("res://VictoryScreen.tscn")
 	var victory = scene.instantiate()
-
+	if multijugador:
+		victory.online()
 	var ui_layer = CanvasLayer.new()
 	ui_layer.layer = 1
 	ui_layer.add_child(victory)
@@ -117,6 +126,37 @@ func show_victory_screen():
 	victory.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	await get_tree().create_timer(0.01).timeout
 	get_tree().paused = true
+	
+	InputMap.action_erase_events("pause")  # Elimina la tecla asignada a pause
+
+	if multijugador:
+		show_end_popup(true)
+
+func show_end_popup(gano: bool):
+	var popup = ConfirmationDialog.new()
+	if gano:
+		popup.dialog_text = "¡Ganaste! Quieres una revancha?"
+	else:
+		popup.dialog_text = "Perdiste... ¿Quieres una revancha?"
+		
+	popup.get_ok_button().text = "Revancha"
+	
+	popup.get_cancel_button().text = "Salir"
+	
+	popup.connect("confirmed", func ():
+		if chat_instance:
+			chat_instance.send_rematch_request()
+	)
+	
+	popup.connect("canceled", func ():
+		if chat_instance:
+			chat_instance.send_quit_match()
+		get_tree().change_scene_to_file("res://menu.tscn") # O tu escena de inicio
+
+	)
+
+	add_child(popup)
+	popup.popup_centered()
 
 func _on_CountdownTimer_timeout():
 	remaining_time -= 1
@@ -135,6 +175,14 @@ func _on_player_money_change(cantidad) -> void:
 	if player.money >= 15 and multijugador:
 		enviar_buff_enemigos()
 
+func apply_remote_event(data):
+	match data.subEvent:
+		"attack":
+			recibir_ataque(data.attack_data)
+		"death":
+			chat_instance.on_opponent_defeated()
+
+
 func enviar_buff_enemigos():
 	var player = get_node("Player")
 	if player.money >= 10:
@@ -152,4 +200,4 @@ func recibir_ataque(data):
 			for child in childs:
 				if child is Mob:
 					child.health += data.extra_health
-					
+			$Player.mostrar_mensaje_ataque("Aumento de vida de los enemigos")

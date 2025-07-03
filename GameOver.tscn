@@ -48,6 +48,20 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Reintentar"
 
+[node name="RematchButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "Enviar Revancha"
+
+[node name="LobbyButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "Volver al Lobby"
+
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40

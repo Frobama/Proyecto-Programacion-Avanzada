@@ -22,3 +22,4 @@ func _on_opcion_pressed() -> void:
 
 func _on_player_health_depleted() -> void:
 	player_alive = false
+	

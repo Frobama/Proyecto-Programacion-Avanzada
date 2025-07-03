@@ -78,3 +78,26 @@ func heal(amount):
 	health += amount
 	health = min(health, max_health)
 	updateBar()
+
+func mostrar_mensaje_ataque(tipo: String):
+	var label = $UI/AttackNotification
+	
+	label.text = "¡ALERTA!"
+	label.visible = true
+	var sound = preload("res://sounds/alert.wav")
+	var sfx = AudioStreamPlayer.new()
+	sfx.stream = sound
+	sfx.volume_db = -8
+	get_tree().current_scene.add_child(sfx)
+	sfx.play()
+	
+	await get_tree().create_timer(1.0).timeout
+	sfx.queue_free()
+	
+	label.text = "¡Ataque recibido: %s!"%tipo
+	label.visible = true
+	label.modulate.a = 1.0
+	var tween = create_tween()
+	tween.tween_property(label,"modulate:a", 0.0, 5.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+	await tween.finished
+	label.visible = false
