@@ -36,7 +36,6 @@ func _on_web_socket_client_connected_to_server():
 func _on_web_socket_client_message_received(message: String):
 	var response = JSON.parse_string(message)
 	print(response.event)
-	print(response.data)
 	match(response.event):
 		"connect-match":
 			print(response.msg)
@@ -45,6 +44,7 @@ func _on_web_socket_client_message_received(message: String):
 			_sendToChatDisplay("You are connected to the server!")
 		"public-message":
 			_sendToChatDisplay("%s: %s" % [response.data.playerName, response.data.playerMsg])
+		
 		"send-public-message":
 			_sendToChatDisplay("You: %s" % response.data.message)
 		"online-players":
@@ -54,8 +54,9 @@ func _on_web_socket_client_message_received(message: String):
 				var id = data.id
 				var name = data.name
 				print(name)
-				players_by_id[id] = name
-				names.append(name)
+				if data.game.name == "Contaminación Mortal":
+					players_by_id[id] = name
+					names.append(name)
 			_updateUserList(names)
 		"player-data":
 			var names = []
@@ -65,10 +66,12 @@ func _on_web_socket_client_message_received(message: String):
 		"login":
 			_sendGetUserListEvent()
 		"player-connected":
-			_addUserToList(response.data.name)
-			players_by_id[response.data.id] = response.data.name
+			if response.data.game.name == "Contaminación Mortal":
+				_addUserToList(response.data.name)
+				players_by_id[response.data.id] = response.data.name
 		"player-disconnected":
-			_deleteUserFromList(response.data.id)
+			if response.data.game.name == "Contaminación Mortal":
+				_deleteUserFromList(response.data.id)
 		"match-request-received":
 			var from_player = response.data.playerId
 			_show_ready_popup(from_player)
