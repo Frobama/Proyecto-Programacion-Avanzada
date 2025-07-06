@@ -32,7 +32,6 @@ func _on_exit_button_pressed():
 
 func online():
 	$VBoxContainer/Button.visible = false
-	$VBoxContainer/RematchButton.visible = true
 	$VBoxContainer/LobbyButton.visible = true
 
 

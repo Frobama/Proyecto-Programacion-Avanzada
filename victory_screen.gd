@@ -23,7 +23,6 @@ func _on_back_to_menu_button_pressed():
 	
 	
 func online():
-	$VBoxContainer/HBoxContainer/RematchButton.visible = true
 	$VBoxContainer/HBoxContainer/LobbyButton.visible = true
 
 

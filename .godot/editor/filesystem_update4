@@ -15,3 +15,6 @@ res://levels.tscn
 res://PAUSA.gd
 res://Global.gd
 res://menu.gd
+res://gun.gd
+res://mob.gd
+res://player.gd
