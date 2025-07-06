@@ -38,8 +38,8 @@ func _physics_process(delta):
 		updateBar()
 	if health <= 0.0:
 		health_depleted.emit()
-	
-		
+
+
 func _on_timer_timeout():
 	if current_state == PlayerState.BULLET_HELL:
 		contaminacion -= 5

@@ -3,19 +3,20 @@ extends Node2D
 var multijugador = false
 var is_bullet_hell = false
 var num_mob = 0
-@export var remaining_time: int = 60  # Tiempo variable entre niveles, cambiar desde el inspector
-@export var mob_limit: int = 10  # Número máximo de mobs editable en cada nivel, cambiar desde el inspector
+@export var remaining_time: int = 60
+@export var mob_limit: int = 10
 
-var halftime = 0  # inicialmente 0, se actualizará al inicio
-var doubled_mob_limit = false  # Bandera para saber si ya duplicamos el límite de mobs
-
+var halftime = 0
+var doubled_mob_limit = false
 
 @onready var countdown_timer = $CountdownTimer
 @onready var time_label = $CanvasLayer/TimeLabel
 @onready var money_label = $CanvasLayer/HBoxContainer/MoneyLabel
+@onready var bullet_hell_border = $CanvasLayer/BulletHellBorder
+@onready var player = $Player
+@onready var gun = $Player/Gun
 
 var chat_instance: Node = null
-
 
 func _ready() -> void:
 	if chat_instance != null:
@@ -24,23 +25,28 @@ func _ready() -> void:
 	BocinaPrincipal.stream.loop = true
 	BocinaPrincipal.play()
 	halftime = remaining_time / 2
-	
+
 	var player = get_node("Player")
 	player.connect("request_bullet_hell", Callable(self, "_on_enter_bullet_hell"))
 	player.connect("request_bullet_hell_end", Callable(self, "_on_exit_bullet_hell"))
 	player.connect("health_depleted", Callable(self, "_on_player_health_depleted"))
-	
-	# Asigna el player a todos los mobs existentes ya colocados en el editor
+
 	for child in get_children():
 		if child is Mob:
 			child.player = player
-	
+
 	$CanvasLayer/HBoxContainer/AnimatedSprite2D.play("moneda")
 	$CountdownTimer.start()
 	update_timer_label()
 
+	bullet_hell_border.visible = false
+
 func _on_enter_bullet_hell():
 	is_bullet_hell = true
+	bullet_hell_border.visible = true
+	#animate_bullet_hell_border()
+	gun.visible = false
+
 	var childs = get_children()
 	for child in childs:
 		if child is Mob:
@@ -48,16 +54,25 @@ func _on_enter_bullet_hell():
 
 func _on_exit_bullet_hell():
 	is_bullet_hell = false
+	bullet_hell_border.visible = false
+	gun.visible = true
+
 	var childs = get_children()
 	for child in childs:
 		if child is Mob:
 			child.bullet_hell_mode = false
 
+#opcional
+func animate_bullet_hell_border():
+	var tween = create_tween().set_loops()
+	tween.tween_property(bullet_hell_border, "modulate:a", 0.1, 2.0).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(bullet_hell_border, "modulate:a", 0.4, 2.0).set_trans(Tween.TRANS_SINE)
+
 func mob_time_progression():
 	if remaining_time <= halftime and not doubled_mob_limit:
 		print("Mitad del tiempo alcanzada: ", remaining_time)
-		mob_limit = mob_limit * 2  # Duplica el límite de mobs
-		doubled_mob_limit = true  # Marca que ya se duplicó el límite
+		mob_limit = mob_limit * 2
+		doubled_mob_limit = true
 		print("Nuevo límite de mobs: ", mob_limit)
 
 func spawn_mob():
@@ -66,24 +81,24 @@ func spawn_mob():
 		new_mob.connect("death", Callable(self, "mob_death"))
 		%PathFollow2D.progress_ratio = randf()
 		new_mob.global_position = %PathFollow2D.global_position
-		
-		# Asignar el jugador al mob spawneado
+
 		var player = get_node_or_null("Player")
 		if player:
 			new_mob.player = player
 		else:
 			print("No se encontró al jugador para asignarlo al mob")
-		
+
 		add_child(new_mob)
 		num_mob += 1
 
 func mob_death():
 	num_mob -= 1
+	
 
 func _on_timer_timeout():
 	if not is_bullet_hell:
 		spawn_mob()
-	mob_time_progression()  # Actualiza la progresión de los mobs
+	mob_time_progression()
 
 func _on_player_health_depleted():
 	if chat_instance and multijugador:
@@ -103,7 +118,7 @@ func _on_player_health_depleted():
 	game_over.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	await get_tree().create_timer(0.01).timeout
 	get_tree().paused = true
-	
+
 	if multijugador:
 		show_end_popup(false)
 
@@ -126,8 +141,8 @@ func show_victory_screen():
 	victory.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	await get_tree().create_timer(0.01).timeout
 	get_tree().paused = true
-	
-	InputMap.action_erase_events("pause")  # Elimina la tecla asignada a pause
+
+	InputMap.action_erase_events("pause")
 
 	if multijugador:
 		show_end_popup(true)
@@ -138,21 +153,19 @@ func show_end_popup(gano: bool):
 		popup.dialog_text = "¡Ganaste! Quieres una revancha?"
 	else:
 		popup.dialog_text = "Perdiste... ¿Quieres una revancha?"
-		
+
 	popup.get_ok_button().text = "Revancha"
-	
 	popup.get_cancel_button().text = "Salir"
-	
+
 	popup.connect("confirmed", func ():
 		if chat_instance:
 			chat_instance.send_rematch_request()
 	)
-	
+
 	popup.connect("canceled", func ():
 		if chat_instance:
 			chat_instance.send_quit_match()
-		get_tree().change_scene_to_file("res://menu.tscn") # O tu escena de inicio
-
+		get_tree().change_scene_to_file("res://menu.tscn")
 	)
 
 	add_child(popup)
@@ -182,7 +195,6 @@ func apply_remote_event(data):
 		"death":
 			chat_instance.on_opponent_defeated()
 
-
 func enviar_buff_enemigos():
 	var player = get_node("Player")
 	if player.money >= 10:
@@ -192,7 +204,7 @@ func enviar_buff_enemigos():
 			"duration": "10",
 			"extra_health": 3
 		})
-		
+
 func recibir_ataque(data):
 	match data.type:
 		"buff_enemigos":

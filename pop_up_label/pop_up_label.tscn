@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpbia5hyc47nm"]
+
+[ext_resource type="Script" uid="uid://brubbo4jk5fjm" path="res://pop_up_label/pop_up_label.gd" id="1_eekog"]
+[ext_resource type="FontFile" uid="uid://bjpw7d5iwbmnm" path="res://Fuentes/28 Days Later.ttf" id="2_i3csu"]
+
+[node name="PopUpLabel" type="Node2D"]
+script = ExtResource("1_eekog")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_i3csu")
+theme_override_font_sizes/font_size = 50

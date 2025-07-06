@@ -1,8 +1,10 @@
+TextureRect
+Label
+ColorRect
 Button
 HBoxContainer
 VBoxContainer
 LineEdit
-Label
 Panel
 Control
 AudioStreamPlayer
@@ -10,5 +12,3 @@ AudioStreamPlayer2D
 AnimatedSprite2D
 StaticBody2D
 Node2D
-Timer
-AnimationPlayer
