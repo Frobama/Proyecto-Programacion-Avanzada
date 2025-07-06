@@ -17,4 +17,7 @@ func _on_exit_pressed() -> void:
 
 
 func _on_multi_pressed() -> void:
+	var scene = preload("res://chat-window.tscn")
+	var instance = scene.instantiate()
+	Global.chat_instance = instance
 	get_tree().change_scene_to_file("res://chat-window.tscn")

@@ -14,7 +14,7 @@ var doubled_mob_limit = false  # Bandera para saber si ya duplicamos el límite 
 @onready var time_label = $CanvasLayer/TimeLabel
 @onready var money_label = $CanvasLayer/HBoxContainer/MoneyLabel
 
-var chat_instance: Node = null
+var chat_instance = Global.chat_instance
 
 
 func _ready() -> void:
@@ -85,8 +85,10 @@ func _on_timer_timeout():
 		spawn_mob()
 	mob_time_progression()  # Actualiza la progresión de los mobs
 
+var not_sent = true
 func _on_player_health_depleted():
-	if chat_instance and multijugador:
+	if chat_instance and multijugador and not_sent:
+		not_sent = false
 		chat_instance._send_death()
 		print("muerte enviada")
 		await get_tree().create_timer(0.01).timeout
@@ -94,6 +96,11 @@ func _on_player_health_depleted():
 	var game_over = scene.instantiate()
 	if multijugador:
 		game_over.online()
+		
+	game_over.connect("rematch", Callable(self, "_send_rematch"))
+	game_over.connect("lobby", Callable(self, "_lobby"))
+	game_over.connect("quit", Callable(self, "_quit_online"))
+	
 	var ui_layer = CanvasLayer.new()
 	ui_layer.layer = 1
 	ui_layer.add_child(game_over)
@@ -103,9 +110,6 @@ func _on_player_health_depleted():
 	game_over.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	await get_tree().create_timer(0.01).timeout
 	get_tree().paused = true
-	
-	if multijugador:
-		show_end_popup(false)
 
 func update_timer_label():
 	var minutes = remaining_time / 60
@@ -117,6 +121,10 @@ func show_victory_screen():
 	var victory = scene.instantiate()
 	if multijugador:
 		victory.online()
+		
+	victory.connect("rematch", Callable(self, "_send_rematch"))
+	victory.connect("lobby", Callable(self, "_lobby"))
+	victory.connect("quit", Callable(self, "_quit_online"))
 	var ui_layer = CanvasLayer.new()
 	ui_layer.layer = 1
 	ui_layer.add_child(victory)
@@ -127,36 +135,38 @@ func show_victory_screen():
 	await get_tree().create_timer(0.01).timeout
 	get_tree().paused = true
 	
-	InputMap.action_erase_events("pause")  # Elimina la tecla asignada a pause
+	
 
-	if multijugador:
-		show_end_popup(true)
 
-func show_end_popup(gano: bool):
-	var popup = ConfirmationDialog.new()
-	if gano:
-		popup.dialog_text = "¡Ganaste! Quieres una revancha?"
-	else:
-		popup.dialog_text = "Perdiste... ¿Quieres una revancha?"
+func _surrender():
+	if chat_instance:
+		chat_instance._send_surrender()
+		_quit_online()
 		
-	popup.get_ok_button().text = "Revancha"
+func _quit_online():
+	if chat_instance:
+		chat_instance._send_quit_match()
+		var boton = chat_instance.get_node("VBoxContainer/MainPanel/VBoxContainer/StartGameButton")
+		boton.visible = true
+		boton = chat_instance.get_node("VBoxContainer/MainPanel/VBoxContainer/CancelGameButton")
+		boton.visible = false
+		
+func _send_rematch():
+	if chat_instance:
+		chat_instance._send_rematch_request()
+			
+func _lobby():
+	if chat_instance:
+		chat_instance._send_quit_match()
+	queue_free()
+	chat_instance.visible = true
+	var boton = chat_instance.get_node("VBoxContainer/MainPanel/VBoxContainer/StartGameButton")
+	boton.visible = true
+	boton = chat_instance.get_node("VBoxContainer/MainPanel/VBoxContainer/CancelGameButton")
+	boton.visible = false
 	
-	popup.get_cancel_button().text = "Salir"
-	
-	popup.connect("confirmed", func ():
-		if chat_instance:
-			chat_instance.send_rematch_request()
-	)
-	
-	popup.connect("canceled", func ():
-		if chat_instance:
-			chat_instance.send_quit_match()
-		get_tree().change_scene_to_file("res://menu.tscn") # O tu escena de inicio
-
-	)
-
-	add_child(popup)
-	popup.popup_centered()
+	get_tree().paused = false
+		
 
 func _on_CountdownTimer_timeout():
 	remaining_time -= 1
@@ -181,6 +191,8 @@ func apply_remote_event(data):
 			recibir_ataque(data.attack_data)
 		"death":
 			chat_instance.on_opponent_defeated()
+		"surrender":
+			chat_instance.on_opponent_defeated()
 
 
 func enviar_buff_enemigos():
@@ -201,3 +213,7 @@ func recibir_ataque(data):
 				if child is Mob:
 					child.health += data.extra_health
 			$Player.mostrar_mensaje_ataque("Aumento de vida de los enemigos")
+			
+			
+func is_multiplayer():
+	return multijugador

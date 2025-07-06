@@ -17,6 +17,9 @@ var svgame_instance: Node = null
 var my_id = ""
 var players_by_id = {}
 
+var connected_to_server := false
+var current_name := ""
+
 var current_popup: ConfirmationDialog = null
 # Señales
 # Cuando se cierra la conexión
@@ -41,12 +44,18 @@ func _on_web_socket_client_message_received(message: String):
 			print(response.msg)
 		"connected-to-server":
 			my_id = response.data.id
+			connected_to_server = true
 			_sendToChatDisplay("You are connected to the server!")
+			$VBoxContainer/ConnectButton.visible = false
+			$VBoxContainer/BackButton.visible = true
 		"public-message":
-			_sendToChatDisplay("%s: %s" % [response.data.playerName, response.data.playerMsg])
-		
+			_sendToChatDisplay("(Público) %s: %s" % [response.data.playerName, response.data.playerMsg])
+		"private-message":
+			_sendToChatDisplay("(Privado) %s: %s" % [response.data.playerName, response.data.playerMsg])
 		"send-public-message":
-			_sendToChatDisplay("You: %s" % response.data.message)
+			_sendToChatDisplay("Tú (Publico): %s" % response.data.message)
+		"send-private-message":
+			_sendToChatDisplay("Tú (Privado al jugador %s): %s" % [players_by_id[response.data.playerId], response.data.message])
 		"online-players":
 			var names = []
 			players_by_id.clear()
@@ -65,6 +74,16 @@ func _on_web_socket_client_message_received(message: String):
 			_updateUserList(names)
 		"login":
 			_sendGetUserListEvent()
+		"player-name-changed":
+			var player_id = response.data.playerId
+			var new_name = response.data.playerName
+			
+			if player_id in players_by_id:
+				var old_name = players_by_id[player_id]
+				players_by_id[player_id] = new_name
+				_sendToChatDisplay("El jugador '%s' ahora se llama '%s'" % [old_name, new_name])
+				_updateUserList(players_by_id.values())
+				
 		"player-connected":
 			if response.data.game.name == "Contaminación Mortal":
 				_addUserToList(response.data.name)
@@ -96,7 +115,7 @@ func _on_web_socket_client_message_received(message: String):
 			_start_game()
 		"receive-game-data":
 			var received_data = response.data
-			
+			print(received_data)
 			if get_tree().current_scene.has_method("apply_remote_event"):
 				get_tree().current_scene.apply_remote_event(received_data)
 				
@@ -106,7 +125,7 @@ func _on_web_socket_client_message_received(message: String):
 		"cancel-match-request":
 			$VBoxContainer/MainPanel/VBoxContainer/StartGameButton.visible = true
 			$VBoxContainer/MainPanel/VBoxContainer/CancelGameButton.visible = false
-			_sendToChatDisplay("El jugador %s canceló la solicitud de partida." % response.data.playerId)
+			_sendToChatDisplay("Se canceló la solicitud de partida.")
 			if current_popup:
 				current_popup.queue_free()
 				current_popup = null
@@ -116,19 +135,24 @@ func _on_web_socket_client_message_received(message: String):
 			if current_popup:
 				current_popup.queue_free()
 				current_popup = null
+		"match-canceled-by-sender":
+			_sendToChatDisplay("%s canceló su solicitud de partida." % response.data.playerId)
+			if current_popup:
+				current_popup.queue_free()
+				current_popup = null
 		"finish-game":
-			svgame_instance.show_victory_screen()
+			if svgame_instance:
+				svgame_instance.show_victory_screen()
+			_sendToChatDisplay(response.msg)
 		"game-ended":
 			print(response.msg)
 			_sendToChatDisplay(response.msg)
-			svgame_instance.show_end_popup(false)
 		"close-match":
 			print(response.msg)
 			
 func send_attack(attack_data: Dictionary):
 	if oponent_id == "":
 		print("No hay oponente asignado.")
-		return
 
 	if oponent_id == my_id:
 		# Modo local: simula ataque
@@ -160,6 +184,7 @@ func on_opponent_defeated():
 		"event": "finish-game"
 	}
 	_client.send(JSON.stringify(event))
+	svgame_instance.show_victory_screen()
 	
 func _show_ready_popup(from_player: String):
 	var popup = ConfirmationDialog.new()
@@ -193,9 +218,11 @@ func _show_ready_popup(from_player: String):
 
 func _send_rematch_request():
 	var event = {
-		"event": "send-rematch-request"
+		"event": "send-rematch-request",
 	}
-	_client.send(JSON.stringify(event))
+	print(event)
+	var result = _client.send(JSON.stringify(event))
+	print(result)
 
 func _send_quit_match():
 	var event = {
@@ -203,16 +230,26 @@ func _send_quit_match():
 	}
 	_client.send(JSON.stringify(event))
 	
+func _send_surrender():
+	var message = {
+		"event": "send-game-data",
+		"data": {
+			"subEvent": "surrender"
+		}
+	}
+	_client.send(JSON.stringify(message))
 	
 func _start_game():
 	var juego = preload("res://svgame.tscn").instantiate()
 	juego.multijugador = true
+	Global.chat_instance = self
 	juego.chat_instance = self
 	juego.remaining_time = 1000
 	juego.mob_limit = 13
 	get_tree().root.add_child(juego)
 	self.visible = false
 	get_tree().current_scene = juego
+	
 	
 # Señales de la UI
 # Cuando se envia un mensaje desde el input
@@ -231,6 +268,13 @@ func _on_send_pressed():
 	_sendMessage(input_message.text)
 	input_message.text = ""
 
+
+func _on_send_private_button_pressed() -> void:
+	if input_message.text == "" or oponent_id == "":
+		return
+	
+	_sendMessage(input_message.text, oponent_id)
+	input_message.text = ""
 # Cuando se pulsa el botón de "CONNECT TO SERVER"
 func _on_connect_toggled(pressed):
 	if not pressed:
@@ -251,17 +295,25 @@ func _sendToChatDisplay(msg):
 # Envía un mensaje a un usuario o al chat grupal y manda la solicitud al servidor
 func _sendMessage(message: String, userId: String = ''):
 	var action
+	var dataToSend
 	if (userId != ''):
 		action = 'send-private-message'
+		dataToSend = {
+		"event": action,
+		"data": {
+			"playerId": oponent_id,
+			"message": message
+			}
+		}
 	else:
 		action = 'send-public-message'
-		
-	var dataToSend = {
+		dataToSend = {
 		"event": action,
 		"data": {
 			"message": message
+			}
 		}
-	}
+	
 
 	_client.send(JSON.stringify(dataToSend))
 
@@ -321,10 +373,7 @@ func _on_start_game_button_pressed() -> void:
 
 func _on_cancel_game_button_pressed() -> void:
 	var dataToSend = {
-		"event": "cancel-match-request",
-		"data": {
-			"playerId":oponent_id
-		}
+		"event": "cancel-match-request"
 	}
 	_client.send(JSON.stringify(dataToSend))
 	
@@ -344,6 +393,33 @@ func _on_accept_pressed() -> void:
 	if name == "":
 		push_error("Ingresa un nombre válido")
 		return
-	_host = "ws://ucn-game-server.martux.cl:4010/?gameId=A&playerName=%s" % name
-	$LoginPanel.visible = false
-	$VBoxContainer.visible = true
+		
+	if connected_to_server:
+		if name != current_name:
+			var change_event = {
+				"event": "change-name",
+				"data": {
+					"name": name
+				}
+			}
+			_client.send(JSON.stringify(change_event))
+			current_name = name
+		$LoginPanel.visible = false
+		$VBoxContainer.visible = true
+	else:
+		current_name = name
+		_host = "ws://ucn-game-server.martux.cl:4010/?gameId=A&playerName=%s" % name
+		$LoginPanel.visible = false
+		$VBoxContainer.visible = true
+
+
+func _on_exit_pressed() -> void:
+	Global.chat_instance = null
+	get_tree().change_scene_to_file("res://menu.tscn")
+	  # Destruye esta instancia
+	
+
+
+func _on_back_button_pressed() -> void:
+	Global.chat_instance = null
+	get_tree().change_scene_to_file("res://menu.tscn")

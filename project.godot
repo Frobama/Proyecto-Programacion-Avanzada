@@ -83,6 +83,7 @@ config/icon="res://icon.png"
 
 BocinaPrincipal="*res://songs/bocina_principal.gd"
 ChatManager="*res://ChatManager.gd"
+Global="*res://Global.gd"
 
 [display]
 

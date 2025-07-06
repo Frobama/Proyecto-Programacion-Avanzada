@@ -59,6 +59,10 @@ layout_mode = 2
 layout_mode = 2
 text = "Aceptar"
 
+[node name="Exit" type="Button" parent="LoginPanel/VBoxContainer"]
+layout_mode = 2
+text = "Volver"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 visible = false
 layout_mode = 0
@@ -71,7 +75,16 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.38
 theme_override_font_sizes/font_size = 50
 toggle_mode = true
-text = "CONNECT TO SERVER"
+text = "CONECTARSE AL SERVIDOR"
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.38
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "VOLVER AL MENU"
 
 [node name="MainPanel" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -81,6 +94,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
 editable = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MainPanel"]
@@ -92,13 +106,14 @@ size_flags_stretch_ratio = 0.4
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
 
 [node name="StartGameButton" type="Button" parent="VBoxContainer/MainPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
 theme_override_font_sizes/font_size = 50
-text = "Start Game"
+text = "Empezar Juego"
 
 [node name="CancelGameButton" type="Button" parent="VBoxContainer/MainPanel/VBoxContainer"]
 visible = false
@@ -106,7 +121,7 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
 theme_override_font_sizes/font_size = 50
-text = "Cancel"
+text = "Cancelar"
 
 [node name="Commands" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -116,27 +131,39 @@ size_flags_stretch_ratio = 0.28
 [node name="InputMessage" type="LineEdit" parent="VBoxContainer/Commands"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 24
-placeholder_text = "Send a message"
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Enviar mensaje"
 expand_to_text_length = true
 
 [node name="SendButton" type="Button" parent="VBoxContainer/Commands"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.18
-theme_override_font_sizes/font_size = 50
-text = "SEND"
+size_flags_stretch_ratio = 0.2
+theme_override_font_sizes/font_size = 40
+text = "ENVIAR
+"
+
+[node name="SendPrivateButton" type="Button" parent="VBoxContainer/Commands"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_override_font_sizes/font_size = 40
+text = "Enviar por
+privado"
 
 [node name="WebSocketClient" type="Node" parent="."]
 script = ExtResource("1_17dk5")
 
 [connection signal="pressed" from="LoginPanel/VBoxContainer/Accept" to="." method="_on_accept_pressed"]
+[connection signal="pressed" from="LoginPanel/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="toggled" from="VBoxContainer/ConnectButton" to="." method="_on_connect_toggled"]
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="item_selected" from="VBoxContainer/MainPanel/VBoxContainer/UserList" to="." method="_on_user_list_item_selected"]
 [connection signal="pressed" from="VBoxContainer/MainPanel/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainPanel/VBoxContainer/CancelGameButton" to="." method="_on_cancel_game_button_pressed"]
 [connection signal="text_submitted" from="VBoxContainer/Commands/InputMessage" to="." method="_on_input_submitted"]
 [connection signal="pressed" from="VBoxContainer/Commands/SendButton" to="." method="_on_send_pressed"]
+[connection signal="pressed" from="VBoxContainer/Commands/SendPrivateButton" to="." method="_on_send_private_button_pressed"]
 [connection signal="connected_to_server" from="WebSocketClient" to="." method="_on_web_socket_client_connected_to_server"]
 [connection signal="connection_closed" from="WebSocketClient" to="." method="_on_web_socket_client_connection_closed"]
 [connection signal="message_received" from="WebSocketClient" to="." method="_on_web_socket_client_message_received"]
