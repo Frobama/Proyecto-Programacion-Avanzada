@@ -134,34 +134,25 @@ mob_limit = 35
 [node name="Player" parent="Game" index="0"]
 position = Vector2(911, 286)
 
-[node name="Mob" parent="Game" index="1"]
-position = Vector2(380, 562)
-
-[node name="Mob2" parent="Game" index="2"]
-position = Vector2(1392, 277)
-
-[node name="Mob3" parent="Game" index="3"]
-position = Vector2(980, 929)
-
-[node name="PineTree" parent="Game" index="4"]
+[node name="PineTree" parent="Game" index="1"]
 position = Vector2(859, 89)
 
-[node name="PineTree2" parent="Game" index="5"]
+[node name="PineTree2" parent="Game" index="2"]
 position = Vector2(870, 497)
 
-[node name="PineTree3" parent="Game" index="6"]
+[node name="PineTree3" parent="Game" index="3"]
 position = Vector2(737, 195)
 
-[node name="PineTree4" parent="Game" index="7"]
+[node name="PineTree4" parent="Game" index="4"]
 position = Vector2(1114, 189)
 
-[node name="PineTree5" parent="Game" index="8"]
+[node name="PineTree5" parent="Game" index="5"]
 position = Vector2(1113, 346)
 
-[node name="PineTree6" parent="Game" index="9"]
+[node name="PineTree6" parent="Game" index="6"]
 position = Vector2(998, 90)
 
-[node name="PineTree7" parent="Game" index="10"]
+[node name="PineTree7" parent="Game" index="7"]
 position = Vector2(1008, 423)
 
 [node name="TileMapLayer" parent="Game/ParallaxBackground/ParallaxLayer" index="0"]

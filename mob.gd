@@ -85,9 +85,18 @@ func take_damage(damage):
 		
 func _on_slime_animation_finished():
 	if esta_muriendo:
+		
+		var popup_scene = preload("res://pop_up_label/pop_up_label.tscn")
+		var popup = popup_scene.instantiate()
+		popup.global_position = global_position
+		popup.start("+$1")
+		get_tree().current_scene.add_child(popup)
+
 		death.emit()
 		$"../Player".add_money(1)
 		queue_free()
+
+	
 		
 func shoot_radial_pattern():
 	var num_bullets = 4

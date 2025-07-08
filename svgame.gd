@@ -3,20 +3,21 @@ extends Node2D
 var multijugador = false
 var is_bullet_hell = false
 var num_mob = 0
-@export var remaining_time: int = 60  # Tiempo variable entre niveles, cambiar desde el inspector
-@export var mob_limit: int = 10  # Número máximo de mobs editable en cada nivel, cambiar desde el inspector
-
-var halftime = 0  # inicialmente 0, se actualizará al inicio
-var doubled_mob_limit = false  # Bandera para saber si ya duplicamos el límite de mobs
+@export var remaining_time: int = 60
+@export var mob_limit: int = 10
 
 var kills = 0
+var halftime = 0
+var doubled_mob_limit = false
 
 @onready var countdown_timer = $CountdownTimer
 @onready var time_label = $CanvasLayer/TimeLabel
 @onready var money_label = $CanvasLayer/HBoxContainer/MoneyLabel
+@onready var bullet_hell_border = $CanvasLayer/BulletHellBorder
+@onready var player = $Player
+@onready var gun = $Player/Gun
 
 var chat_instance = Global.chat_instance
-
 
 func _ready() -> void:
 	if chat_instance != null:
@@ -25,7 +26,7 @@ func _ready() -> void:
 	BocinaPrincipal.stream.loop = true
 	BocinaPrincipal.play()
 	halftime = remaining_time / 2
-	
+
 	var player = get_node("Player")
 	player.connect("request_bullet_hell", Callable(self, "_on_enter_bullet_hell"))
 	player.connect("request_bullet_hell_end", Callable(self, "_on_exit_bullet_hell"))
@@ -38,13 +39,19 @@ func _ready() -> void:
 	for child in get_children():
 		if child is Mob:
 			child.player = player
-	
+
 	$CanvasLayer/HBoxContainer/AnimatedSprite2D.play("moneda")
 	$CountdownTimer.start()
 	update_timer_label()
 
+	bullet_hell_border.visible = false
+
 func _on_enter_bullet_hell():
 	is_bullet_hell = true
+	bullet_hell_border.visible = true
+	#animate_bullet_hell_border()
+	gun.visible = false
+
 	var childs = get_children()
 	for child in childs:
 		if child is Mob:
@@ -52,16 +59,25 @@ func _on_enter_bullet_hell():
 
 func _on_exit_bullet_hell():
 	is_bullet_hell = false
+	bullet_hell_border.visible = false
+	gun.visible = true
+
 	var childs = get_children()
 	for child in childs:
 		if child is Mob:
 			child.bullet_hell_mode = false
 
+#opcional
+func animate_bullet_hell_border():
+	var tween = create_tween().set_loops()
+	tween.tween_property(bullet_hell_border, "modulate:a", 0.1, 2.0).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(bullet_hell_border, "modulate:a", 0.4, 2.0).set_trans(Tween.TRANS_SINE)
+
 func mob_time_progression():
 	if remaining_time <= halftime and not doubled_mob_limit:
 		print("Mitad del tiempo alcanzada: ", remaining_time)
-		mob_limit = mob_limit * 2  # Duplica el límite de mobs
-		doubled_mob_limit = true  # Marca que ya se duplicó el límite
+		mob_limit = mob_limit * 2
+		doubled_mob_limit = true
 		print("Nuevo límite de mobs: ", mob_limit)
 
 func spawn_mob():
@@ -70,14 +86,13 @@ func spawn_mob():
 		new_mob.connect("death", Callable(self, "mob_death"))
 		%PathFollow2D.progress_ratio = randf()
 		new_mob.global_position = %PathFollow2D.global_position
-		
-		# Asignar el jugador al mob spawneado
+
 		var player = get_node_or_null("Player")
 		if player:
 			new_mob.player = player
 		else:
 			print("No se encontró al jugador para asignarlo al mob")
-		
+
 		add_child(new_mob)
 		num_mob += 1
 
@@ -130,7 +145,7 @@ func unlock_skill(index):
 func _on_timer_timeout():
 	if not is_bullet_hell:
 		spawn_mob()
-	mob_time_progression()  # Actualiza la progresión de los mobs
+	mob_time_progression()
 
 var not_sent = true
 func _on_player_health_depleted():
@@ -241,7 +256,6 @@ func apply_remote_event(data):
 		"surrender":
 			chat_instance.on_opponent_defeated()
 
-
 func enviar_buff_enemigos():
 	var player = get_node("Player")
 	if player.money >= 10:
@@ -251,7 +265,7 @@ func enviar_buff_enemigos():
 			"duration": "10",
 			"extra_health": 3
 		})
-		
+
 func recibir_ataque(data):
 	match data.type:
 		"buff_enemigos":

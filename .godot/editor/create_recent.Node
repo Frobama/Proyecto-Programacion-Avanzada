@@ -1,4 +1,7 @@
 Label
+TextureRect
+Label
+ColorRect
 Button
 HBoxContainer
 VBoxContainer
@@ -10,5 +13,3 @@ AudioStreamPlayer2D
 AnimatedSprite2D
 StaticBody2D
 Node2D
-Timer
-AnimationPlayer

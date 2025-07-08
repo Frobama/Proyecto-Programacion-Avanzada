@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2c4krxl28b7o"]
+
+[ext_resource type="Script" uid="uid://bbw50nifsrtuy" path="res://pop_up_label/floating_coin.gd" id="1_63s41"]
+
+[node name="FloatingCoin" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_63s41")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

@@ -4,6 +4,7 @@ var type = 1#Pistola normal
 #tipo 2: Escopeta (?)
 #tipo 3: rifle (dispara mas rapido)
 var puede_disparar = true
+var MuzzleFlashScene = preload("res://pistol/muzzle_flash/muzzle_flash.tscn")
 
 @onready var sound_pistol = $SFX_pistola
 
@@ -26,6 +27,7 @@ func shoot():
 		new_bullet.get_node("Projectile").modulate = Color("e54b4af2")
 		get_tree().current_scene.add_child(new_bullet)
 		sound_pistol.play()
+		spawn_muzzle_flash()
 		puede_disparar = false
 		$"../TimerDisparo".start()
 	
@@ -65,6 +67,7 @@ func shoot():
 		new_bullet3.shooter = self
 		new_bullet3.get_node("Projectile").modulate = Color("e54b4af2")
 		
+		spawn_muzzle_flash()
 		sound_pistol.play()
 		get_tree().current_scene.add_child(new_bullet)
 		get_tree().current_scene.add_child(new_bullet2)
@@ -85,9 +88,16 @@ func shoot():
 		new_bullet.shooter = self
 		new_bullet.get_node("Projectile").modulate = Color("e54b4af2")
 		get_tree().current_scene.add_child(new_bullet)
+		spawn_muzzle_flash()
 		puede_disparar = false
 		$"../TimerDisparo".start()
 		
 
 func _on_timer_disparo_timeout() -> void:
 	puede_disparar = true
+	
+func spawn_muzzle_flash():
+	var flash_instance = MuzzleFlashScene.instantiate()	
+	%ShootingPart.add_child(flash_instance)	
+	flash_instance.position = Vector2.ZERO
+	flash_instance.rotation = 0
