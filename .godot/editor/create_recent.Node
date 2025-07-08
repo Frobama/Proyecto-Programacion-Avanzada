@@ -1,3 +1,4 @@
+CollisionShape2D
 Label
 TextureRect
 Label
@@ -11,5 +12,3 @@ Control
 AudioStreamPlayer
 AudioStreamPlayer2D
 AnimatedSprite2D
-StaticBody2D
-Node2D

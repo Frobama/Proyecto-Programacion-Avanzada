@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://dcqluj7mfg01d"]
+[gd_scene load_steps=27 format=4 uid="uid://dcqluj7mfg01d"]
 
 [ext_resource type="Script" uid="uid://brmpap0dham6i" path="res://svgame.gd" id="1_bjmfr"]
 [ext_resource type="PackedScene" uid="uid://bdu6y60w2q3lk" path="res://player.tscn" id="1_kgt6l"]
@@ -268,6 +268,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7trrv"]
+size = Vector2(2773, 185)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_28nt8"]
+size = Vector2(135, 1928)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nrou7"]
+size = Vector2(127, 1908.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ylgqp"]
+size = Vector2(2792, 163)
+
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_bjmfr")
@@ -335,6 +347,7 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("8_7trrv")
 theme_override_font_sizes/font_size = 50
+metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 1
@@ -368,6 +381,481 @@ grow_vertical = 2
 color = Color(0.86, 0.22188, 0.1376, 0.203922)
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="PineTree8" parent="." instance=ExtResource("2_tg0xe")]
+position = Vector2(-310, -360)
+
+[node name="PineTree2" parent="PineTree8" instance=ExtResource("2_tg0xe")]
+position = Vector2(116, 1)
+
+[node name="PineTree2" parent="PineTree8/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(114, 0)
+
+[node name="PineTree2" parent="PineTree8/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(107, 2)
+
+[node name="PineTree2" parent="PineTree8/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(105, -2)
+
+[node name="PineTree2" parent="PineTree8/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(98, -1)
+
+[node name="PineTree2" parent="PineTree8/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(99, 1)
+
+[node name="PineTree2" parent="PineTree8/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(109, 1)
+
+[node name="PineTree2" parent="PineTree8/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(97, 0)
+
+[node name="PineTree2" parent="PineTree8/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(108, 0)
+
+[node name="PineTree2" parent="PineTree8/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(109, 2)
+
+[node name="PineTree2" parent="PineTree8/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(103, 5)
+
+[node name="PineTree2" parent="PineTree8/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(106, 0)
+
+[node name="PineTree2" parent="PineTree8/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(104, 2)
+
+[node name="PineTree2" parent="PineTree8/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(110, -2)
+
+[node name="PineTree2" parent="PineTree8/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(111, 1)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PineTree8"]
+position = Vector2(1313.5, -52.5)
+shape = SubResource("RectangleShape2D_7trrv")
+
+[node name="PineTree3" parent="PineTree8" instance=ExtResource("2_tg0xe")]
+position = Vector2(1710, 11)
+
+[node name="PineTree2" parent="PineTree8/PineTree3" instance=ExtResource("2_tg0xe")]
+position = Vector2(100, 0)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(111, -3)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(110, 3)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(93, 0)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(101, -2)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(103, -1)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(101, 2)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(104, 1)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(106, -6)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(8, 74)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(5, 75)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-3, 66)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-1, 75)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-6, 71)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(0, 66)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(1, 75)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(1, 66)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(1, 75)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(3, 56)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-2, 63)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(0, 66)
+
+[node name="PineTree2" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-1, 77)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PineTree8/PineTree3/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2"]
+position = Vector2(3.5, 739)
+shape = SubResource("RectangleShape2D_28nt8")
+
+[node name="PineTree9" parent="." instance=ExtResource("2_tg0xe")]
+position = Vector2(-319, -256)
+
+[node name="PineTree2" parent="PineTree9" instance=ExtResource("2_tg0xe")]
+position = Vector2(-4, 82)
+
+[node name="PineTree2" parent="PineTree9/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-1, 89)
+
+[node name="PineTree2" parent="PineTree9/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(0, 81)
+
+[node name="PineTree2" parent="PineTree9/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(2, 68)
+
+[node name="PineTree2" parent="PineTree9/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-1, 74)
+
+[node name="PineTree2" parent="PineTree9/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-2, 69)
+
+[node name="PineTree2" parent="PineTree9/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-3, 69)
+
+[node name="PineTree2" parent="PineTree9/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(4, 64)
+
+[node name="PineTree2" parent="PineTree9/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-9, 80)
+
+[node name="PineTree2" parent="PineTree9/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-1, 67)
+
+[node name="PineTree2" parent="PineTree9/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-1, 60)
+
+[node name="PineTree2" parent="PineTree9/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-1, 67)
+
+[node name="PineTree2" parent="PineTree9/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(2, 73)
+
+[node name="PineTree2" parent="PineTree9/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(0, 74)
+
+[node name="PineTree2" parent="PineTree9/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(6, 66)
+
+[node name="PineTree2" parent="PineTree9/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-5, 65)
+
+[node name="PineTree2" parent="PineTree9/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-2, 59)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PineTree9"]
+position = Vector2(-5, 712.75)
+shape = SubResource("RectangleShape2D_nrou7")
+
+[node name="PineTree10" parent="." instance=ExtResource("2_tg0xe")]
+position = Vector2(-334, 1032)
+
+[node name="PineTree2" parent="PineTree10" instance=ExtResource("2_tg0xe")]
+position = Vector2(0, 81)
+
+[node name="PineTree2" parent="PineTree10/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(2, 72)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-3, 69)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-1, 77)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-1, 77)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(96, 0)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(103, 0)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(106, -1)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(106, 1)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(108, -1)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(103, 3)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(102, 2)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(102, -3)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(97, -1)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(103, 5)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(93, 1)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(103, 2)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(103, 2)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(100, -1)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(104, -5)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(97, 5)
+
+[node name="PineTree2" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(96, -1)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PineTree10/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2"]
+position = Vector2(1248, -41)
+shape = SubResource("RectangleShape2D_ylgqp")
+
+[node name="PineTree11" parent="." instance=ExtResource("2_tg0xe")]
+position = Vector2(1491, 1418)
+
+[node name="PineTree2" parent="PineTree11" instance=ExtResource("2_tg0xe")]
+position = Vector2(105, -2)
+
+[node name="PineTree2" parent="PineTree11/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(100, 3)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(104, 1)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(107, -2)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(101, 2)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(101, 1)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(100, 0)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(131, -795)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-1, 83)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(3, 75)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(3, 69)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(1, 83)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(4, 78)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(1, 84)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-9, 75)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(3, 71)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(11, 66)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(0, 62)
+
+[node name="PineTree2" parent="PineTree11/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-37, 50)
+
+[node name="PineTree12" parent="." instance=ExtResource("2_tg0xe")]
+position = Vector2(-646, -474)
+
+[node name="PineTree13" parent="." instance=ExtResource("2_tg0xe")]
+position = Vector2(-867, 165)
+
+[node name="PineTree2" parent="PineTree13" instance=ExtResource("2_tg0xe")]
+position = Vector2(1057, -877)
+
+[node name="PineTree2" parent="PineTree13/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(847, 88)
+
+[node name="PineTree2" parent="PineTree13/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(1011, -164)
+
+[node name="PineTree2" parent="PineTree13/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-509, 115)
+
+[node name="PineTree2" parent="PineTree13/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-355, -308)
+
+[node name="PineTree14" parent="." instance=ExtResource("2_tg0xe")]
+position = Vector2(4215, -76)
+
+[node name="PineTree2" parent="PineTree14" instance=ExtResource("2_tg0xe")]
+position = Vector2(1031, -369)
+
+[node name="PineTree2" parent="PineTree14/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-819, -536)
+
+[node name="PineTree2" parent="PineTree14/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-1178, -647)
+
+[node name="PineTree2" parent="PineTree14/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-566, 1547)
+
+[node name="PineTree2" parent="PineTree14/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(1147, -455)
+
+[node name="PineTree2" parent="PineTree14/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-920, -25)
+
+[node name="PineTree2" parent="PineTree14/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-207, 1122)
+
+[node name="PineTree2" parent="PineTree14/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(1258, -182)
+
+[node name="PineTree3" parent="PineTree14" instance=ExtResource("2_tg0xe")]
+position = Vector2(-1034, 683)
+
+[node name="PineTree2" parent="PineTree14/PineTree3" instance=ExtResource("2_tg0xe")]
+position = Vector2(2860, -162)
+
+[node name="PineTree2" parent="PineTree14/PineTree3/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-915, 431)
+
+[node name="PineTree2" parent="PineTree14/PineTree3/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(350, 861)
+
+[node name="PineTree2" parent="PineTree14/PineTree3/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-444, 363)
+
+[node name="PineTree15" parent="." instance=ExtResource("2_tg0xe")]
+position = Vector2(2361, 1783)
+
+[node name="PineTree2" parent="PineTree15" instance=ExtResource("2_tg0xe")]
+position = Vector2(566, -706)
+
+[node name="PineTree2" parent="PineTree15/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-1629, 661)
+
+[node name="PineTree2" parent="PineTree15/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(3050, -82)
+
+[node name="PineTree2" parent="PineTree15/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-960, 354)
+
+[node name="PineTree2" parent="PineTree15/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-975, 452)
+
+[node name="PineTree2" parent="PineTree15/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(564, 345)
+
+[node name="PineTree2" parent="PineTree15/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(952, -217)
+
+[node name="PineTree2" parent="PineTree15/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-789, -364)
+
+[node name="PineTree2" parent="PineTree15/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(1033, -360)
+
+[node name="PineTree2" parent="PineTree15/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-873, -239)
+
+[node name="PineTree2" parent="PineTree15/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(241, -859)
+
+[node name="PineTree2" parent="PineTree15/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(723, -189)
+
+[node name="PineTree16" parent="." instance=ExtResource("2_tg0xe")]
+position = Vector2(-730, 882)
+
+[node name="PineTree2" parent="PineTree16" instance=ExtResource("2_tg0xe")]
+position = Vector2(-622, -262)
+
+[node name="PineTree2" parent="PineTree16/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-321, 637)
+
+[node name="PineTree2" parent="PineTree16/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(2822, 1049)
+
+[node name="PineTree2" parent="PineTree16/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-671, -568)
+
+[node name="PineTree2" parent="PineTree16/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-1098, -76)
+
+[node name="PineTree17" parent="." instance=ExtResource("2_tg0xe")]
+position = Vector2(-1340, 2329)
+
+[node name="PineTree18" parent="." instance=ExtResource("2_tg0xe")]
+position = Vector2(16, 1658)
+
+[node name="PineTree2" parent="PineTree18" instance=ExtResource("2_tg0xe")]
+position = Vector2(-1629, 661)
+
+[node name="PineTree2" parent="PineTree18/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(4197, -203)
+
+[node name="PineTree2" parent="PineTree18/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-960, 354)
+
+[node name="PineTree2" parent="PineTree18/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-975, 452)
+
+[node name="PineTree2" parent="PineTree18/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(564, 345)
+
+[node name="PineTree2" parent="PineTree18/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(952, -217)
+
+[node name="PineTree2" parent="PineTree18/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-789, -364)
+
+[node name="PineTree2" parent="PineTree18/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(1033, -360)
+
+[node name="PineTree2" parent="PineTree18/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(-1395, 579)
+
+[node name="PineTree2" parent="PineTree18/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(241, -859)
+
+[node name="PineTree2" parent="PineTree18/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2/PineTree2" instance=ExtResource("2_tg0xe")]
+position = Vector2(664, -381)
 
 [connection signal="health_depleted" from="Player" to="pause" method="_on_player_health_depleted"]
 [connection signal="money_change" from="Player" to="." method="_on_player_money_change"]
