@@ -75,6 +75,8 @@ func animate_bullet_hell_border():
 
 func mob_time_progression():
 	if remaining_time <= halftime and not doubled_mob_limit:
+		var timer = $TimerVida
+		timer.wait_time = 0.5
 		print("Mitad del tiempo alcanzada: ", remaining_time)
 		mob_limit = mob_limit * 2
 		doubled_mob_limit = true

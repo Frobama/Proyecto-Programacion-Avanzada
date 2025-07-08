@@ -15,6 +15,9 @@ func _init(target):
 	super._init(target)
 	
 func cast_skill(target):
+	var game = target.get_tree().current_scene
+	if not game.is_bullet_hell:
+		return
 	super.cast_skill(target)
 	var jugador = target.global_position
 	
@@ -32,4 +35,4 @@ func cast_skill(target):
 	for i in range(4):
 		sfx.play()
 		await target.get_tree().create_timer(0.5).timeout
-		
+	
