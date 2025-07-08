@@ -9,6 +9,7 @@ var num_mob = 0
 var halftime = 0  # inicialmente 0, se actualizará al inicio
 var doubled_mob_limit = false  # Bandera para saber si ya duplicamos el límite de mobs
 
+var kills = 0
 
 @onready var countdown_timer = $CountdownTimer
 @onready var time_label = $CanvasLayer/TimeLabel
@@ -30,6 +31,9 @@ func _ready() -> void:
 	player.connect("request_bullet_hell_end", Callable(self, "_on_exit_bullet_hell"))
 	player.connect("health_depleted", Callable(self, "_on_player_health_depleted"))
 	
+	if multijugador:
+		for i in range(4):
+			unlock_skill(i)
 	# Asigna el player a todos los mobs existentes ya colocados en el editor
 	for child in get_children():
 		if child is Mob:
@@ -79,7 +83,50 @@ func spawn_mob():
 
 func mob_death():
 	num_mob -= 1
+	
+	if not multijugador:
+		kills+=1
+		check_unlock_skills()
+		
 
+func check_unlock_skills():
+	match kills:
+		5:
+			unlock_skill(0)
+		10:
+			unlock_skill(1)
+		15:
+			unlock_skill(2)
+		25:
+			unlock_skill(3)
+			
+func unlock_skill(index):
+	var player = get_node("Player")
+	var skill_bar = player.get_node("UI/SkillBar")
+	var slots = skill_bar.get_slots()
+	
+	match index:
+		0:
+			slots[0].is_unlocked = true
+			slots[0].change_key = '1'
+			if not multijugador:
+				player.nuevaSkill("Explosión Química")
+		1:
+			slots[1].is_unlocked = true
+			slots[1].change_key = "2"
+			if not multijugador:
+				player.nuevaSkill("Llamado de las Aves")
+		2: 
+			slots[2].is_unlocked = true
+			slots[2].change_key = "3"
+			if not multijugador:
+				player.nuevaSkill("Terremoto")
+		3:
+			slots[3].is_unlocked = true
+			slots[3].change_key = "4"
+			if not multijugador:
+				player.nuevaSkill("Botiquín")
+			
 func _on_timer_timeout():
 	if not is_bullet_hell:
 		spawn_mob()
@@ -179,7 +226,7 @@ func _on_CountdownTimer_timeout():
 func _on_player_money_change(cantidad) -> void:
 	money_label.text = "Dinero: $" + str(cantidad)
 	var player = get_node("Player")
-	if player.money > 5:
+	if player.money >= 5:
 		var arma = get_node("Player/Gun")
 		arma.type = 2
 	if player.money >= 15 and multijugador:

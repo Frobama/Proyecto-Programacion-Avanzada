@@ -21,3 +21,7 @@ func _on_multi_pressed() -> void:
 	var instance = scene.instantiate()
 	Global.chat_instance = instance
 	get_tree().change_scene_to_file("res://chat-window.tscn")
+
+
+func _on_contr_pressed() -> void:
+	get_tree().change_scene_to_file("res://controles.tscn")

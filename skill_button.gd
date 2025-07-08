@@ -10,13 +10,19 @@ var skill = null
 var change_key = "":
 	set(value):
 		change_key = value
-		key.text = value
+		key.text = value if is_unlocked else ""
 		
 		shortcut = Shortcut.new()
 		var input_key = InputEventKey.new()
 		input_key.keycode = value.unicode_at(0)
 		
 		shortcut.events = [input_key]		
+	
+var is_unlocked = false:
+	set(value):
+		is_unlocked = value
+		self.modulate = Color(1,1,1,1) if value else Color(0.5,0.5,0.5,1)
+		disabled = not value
 		
 func _ready():
 	change_key = "1"

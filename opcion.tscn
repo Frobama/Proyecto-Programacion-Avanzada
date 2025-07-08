@@ -47,6 +47,7 @@ texture = ExtResource("1_fwlhr")
 expand_mode = 1
 
 [node name="RESOLUCION" type="Button" parent="TextureRect"]
+visible = false
 layout_mode = 2
 offset_left = 1141.0
 offset_top = 50.0
@@ -57,6 +58,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_lti8b")
 text = "RESOLUCION"
 
 [node name="PANTALLA COMPLETA" type="Button" parent="TextureRect"]
+visible = false
 layout_mode = 2
 offset_left = 106.0
 offset_top = 64.0

@@ -1,0 +1,91 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjxxxv15qfihg"]
+
+[ext_resource type="Script" uid="uid://47agx2v6codx" path="res://controles.gd" id="1_wplcm"]
+[ext_resource type="FontFile" uid="uid://bjpw7d5iwbmnm" path="res://Fuentes/28 Days Later.ttf" id="2_q780r"]
+[ext_resource type="Texture2D" uid="uid://bcknecosj581f" path="res://addons/c3e0093c-7a14-4904-83af-b9c722dfa83d.png" id="2_rstt6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hy44"]
+bg_color = Color(0, 0.2, 0, 0.8)
+
+[node name="control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wplcm")
+
+[node name="Label" type="Label" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.5
+offset_top = 94.0
+offset_right = 160.5
+offset_bottom = 160.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_q780r")
+theme_override_font_sizes/font_size = 70
+text = "CONTROLES"
+
+[node name="move" type="Label" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -606.5
+offset_top = -233.5
+offset_right = 606.5
+offset_bottom = 95.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_q780r")
+theme_override_font_sizes/font_size = 70
+text = "Movimiento                                           w,a,s,d
+Disparar                  Espacio/Click izquierdo
+Habilidades                                            1,2,3,4
+Pausa                                                  ESCAPE"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0725, 0.29, 0.126875, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rstt6")
+expand_mode = 1
+
+[node name="ATRAS" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -336.0
+offset_top = -255.0
+offset_right = 336.0
+offset_bottom = -172.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_4hy44")
+text = "ATRAS"
+
+[connection signal="pressed" from="ATRAS" to="." method="_on_atras_pressed"]

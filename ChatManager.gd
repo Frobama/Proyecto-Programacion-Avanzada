@@ -16,6 +16,7 @@ var oponent_id = ""
 var svgame_instance: Node = null
 var my_id = ""
 var players_by_id = {}
+var players_in_game = {}
 
 var connected_to_server := false
 var current_name := ""
@@ -59,13 +60,15 @@ func _on_web_socket_client_message_received(message: String):
 		"online-players":
 			var names = []
 			players_by_id.clear()
+			players_in_game.clear()
 			for data in response.data:
 				var id = data.id
 				var name = data.name
 				print(name)
 				if data.game.name == "Contaminación Mortal":
-					players_by_id[id] = name
-					names.append(name)
+					players_in_game[id] = name
+				players_by_id[id] = name
+				names.append(name)
 			_updateUserList(names)
 		"player-data":
 			var names = []
@@ -86,16 +89,17 @@ func _on_web_socket_client_message_received(message: String):
 				
 		"player-connected":
 			if response.data.game.name == "Contaminación Mortal":
-				_addUserToList(response.data.name)
-				players_by_id[response.data.id] = response.data.name
+				players_in_game[response.data.id] = response.data.name
+			_addUserToList(response.data.name)
+			players_by_id[response.data.id] = response.data.name
 		"player-disconnected":
-			if response.data.game.name == "Contaminación Mortal":
-				_deleteUserFromList(response.data.id)
+			_deleteUserFromList(response.data.id)
 		"match-request-received":
 			var from_player = response.data.playerId
-			_show_ready_popup(from_player)
+			if from_player in players_in_game:
+				_show_ready_popup(from_player)
 		"match-rejected":
-			var from = players_by_id[response.data.playerId]
+			var from = players_in_game[response.data.playerId]
 			_sendToChatDisplay("%s rechazó tu solicitud de partida." % from)
 			$VBoxContainer/MainPanel/VBoxContainer/StartGameButton.visible = true
 			$VBoxContainer/MainPanel/VBoxContainer/CancelGameButton.visible = false
@@ -244,7 +248,7 @@ func _start_game():
 	juego.multijugador = true
 	Global.chat_instance = self
 	juego.chat_instance = self
-	juego.remaining_time = 1000
+	juego.remaining_time = 300
 	juego.mob_limit = 13
 	get_tree().root.add_child(juego)
 	self.visible = false
@@ -368,7 +372,7 @@ func send_ready_request(oponent_id: String):
 	
 
 func _on_start_game_button_pressed() -> void:
-	if oponent_id != "":
+	if oponent_id != "" and oponent_id in players_in_game and oponent_id != my_id:
 		send_ready_request(oponent_id)
 
 func _on_cancel_game_button_pressed() -> void:
