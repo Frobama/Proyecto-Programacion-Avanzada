@@ -13,3 +13,4 @@ res://opcion.tscn
 res://svgame.gd
 res://skills/llamado_gaviotas.gd
 res://skill_button.gd
+res://ChatManager.gd

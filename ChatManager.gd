@@ -56,7 +56,8 @@ func _on_web_socket_client_message_received(message: String):
 		"send-public-message":
 			_sendToChatDisplay("Tú (Publico): %s" % response.data.message)
 		"send-private-message":
-			_sendToChatDisplay("Tú (Privado al jugador %s): %s" % [players_by_id[response.data.playerId], response.data.message])
+			if response.status == "OK":
+				_sendToChatDisplay("Tú (Privado al jugador %s): %s" % [players_by_id[response.data.playerId], response.data.message])
 		"online-players":
 			var names = []
 			players_by_id.clear()
