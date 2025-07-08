@@ -40,11 +40,15 @@ func _on_pressed() -> void:
 	if skill != null:
 		skill.cast_skill(owner)
 		
-		if key.text == "2" and owner.get_tree().current_scene.is_bullet_hell:
+		if key.text == "2":
+			if owner.get_tree().current_scene.is_bullet_hell:
+				timer.start()
+				disabled = true
+				set_process(true)
+		else:
 			timer.start()
 			disabled = true
 			set_process(true)
-
 
 func _on_timer_timeout() -> void:
 	disabled = false
