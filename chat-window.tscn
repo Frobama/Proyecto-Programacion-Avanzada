@@ -13,7 +13,7 @@ border_width_bottom = 100
 border_color = Color(0, 0, 0, 1)
 border_blend = true
 
-[node name="Control" type="Control"]
+[node name="Control2" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 927.0

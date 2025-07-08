@@ -419,12 +419,16 @@ func _on_accept_pressed() -> void:
 
 
 func _on_exit_pressed() -> void:
-	Global.chat_instance = null
+	if Global.chat_instance != null:
+			Global.chat_instance.queue_free()
+			Global.chat_instance = null
 	get_tree().change_scene_to_file("res://menu.tscn")
 	  # Destruye esta instancia
 	
 
 
 func _on_back_button_pressed() -> void:
-	Global.chat_instance = null
+	if Global.chat_instance != null:
+			Global.chat_instance.queue_free()
+			Global.chat_instance = null
 	get_tree().change_scene_to_file("res://menu.tscn")
